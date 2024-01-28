@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% block title %}
+    <title>Document</title>
+  {% endblock %}
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static "fonts" %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static "css/plugins.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/template.css" %}">
+
+
+
+</head>
+<body>
+<!-- Preloader-->
+  <div class="page-loader">
+    <div class="page-loader-inner">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+  </div>
+<!-- Preloader end-->
+
+<!-- Header-->
+  <header class="header header-transparent">
+    <div class="container-fluid">
+      <!-- Brand-->
+      <div class="inner-header"><a class="inner-brand" href="{% url "website:index" %}">Bizeducate</a></div>
+      <!-- Navigation-->
+      <div class="inner-navigation collapse">
+        <div class="inner-nav">
+          <ul>
+            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Home</span></a>
+              <div class="mega-menu">
+                <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-3.jpg">
+                  <!-- Column 1-->
+                  <li class="menu-item-has-children mega-menu-col"><a href="#">Multi Page</a>
+                    <ul class="sub-menu">
+                      <li><a href="#">Parallax</a></li>
+                      <li><a href="#">Slider - Fade</a></li>
+                      <li><a href="#">Slider - Slide</a></li>
+                    </ul>
+                  </li>
+                  <!-- Column 2-->
+                  <li class="menu-item-has-children mega-menu-col"><a href="#">One Page</a>
+                    <ul class="sub-menu">
+                      <li><a href="#">Parallax</a></li>
+                      <li><a href="#">Slider - Fade</a></li>
+                      <li><a href="#">Slider - Slide</a></li>
+                      <li><a href="#">Gradient Style 1</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item-has-children menu-item-has-mega-menu"><a href="#"><span class="menu-item-span">Pages</span></a>
+              <div class="mega-menu">
+                <ul class="sub-menu mega-menu-row" data-background="assets/images/menu-1.jpg">
+                  <!-- Column 1-->
+                  <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 1</a>
+                    <ul class="sub-menu">
+                      <li><a href="#">About Us 1</a></li>
+                      <li><a href="#">About Us 2</a></li>
+                    </ul>
+                  </li>
+                  <!-- Column 2-->
+                  <li class="menu-item-has-children mega-menu-col"><a href="#">Pages 2</a>
+                    <ul class="sub-menu">
+                      <li><a href="#">Sign in</a></li>
+                      <li><a href="#">Sign Up</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Portfolio</span></a>
+              <ul class="sub-menu">
+                <li><a href="#">Carousel</a></li>
+                <li class="menu-item-has-children"><a href="#">Wide</a>
+                  <ul class="sub-menu">
+                    <li><a href="#">5 Columns</a></li>
+                    <li><a href="#">4 Columns</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children"><a href="#">Boxed</a>
+                  <ul class="sub-menu">
+                    <li><a href="#">4 Columns</a></li>
+                    <li><a href="#">3 Columns</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item-has-children"><a href="#">Single</a>
+                  <ul class="sub-menu">
+                    <li><a href="#">Sidebar Stack</a></li>
+                    <li><a href="#">Sidebar Slides</a></li>
+                    <li><a href="#">Sidebar Gallery</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Blog</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="extra-nav">
+        <ul>
+          <li><a class="top-bar-cart" href="#"><span class="menu-item-span"><i class="ti-shopping-cart"></i><span>3</span></span></a></li>
+          <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+          <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+<!-- Header end-->
+<!-- Wrapper-->
+  <div class="wrapper">
+    {% block content %}
+    {% endblock %}
+
+
+  <!-- Footer-->
+    <footer class="footer">
+      <div class="footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <!-- Text widget-->
+              <aside class="widget widget-text">
+                <div class="widget-title">
+                  <h6>About Us</h6>
+                </div>
+                <div class="textwidget">
+                  <p>Map where your photos were taken and discover local points of interest. Map where your photos.</p>
+                  <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                  </ul>
+                </div>
+              </aside>
+            </div>
+            <div class="col-md-3">
+              <!-- Recent entries widget-->
+              <aside class="widget widget-recent-entries">
+                <div class="widget-title">
+                  <h6>Recent Posts</h6>
+                </div>
+                <ul>
+                  <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">May 8, 2018</span></li>
+                  <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">April 7, 2018</span></li>
+                  <li><a href="#">Map where your photos were taken and discover local points.</a><span class="post-date">September 7, 2018</span></li>
+                </ul>
+              </aside>
+            </div>
+            <div class="col-md-3">
+              <!-- Recent works-->
+              <aside class="widget widget-recent-works">
+                <div class="widget-title">
+                  <h6>Portfolio</h6>
+                </div>
+                <ul>
+                  <li><a href="#"><img src="{% static "images/widgets/1.jpg" %}" alt=""></a></li>
+                  <li><a href="#"><img src="{% static "images/widgets/2.jpg" %}" alt=""></a></li>
+                  <li><a href="#"><img src="{% static "images/widgets/3.jpg" %}" alt=""></a></li>
+                </ul>
+              </aside>
+            </div>
+            <div class="col-md-3">
+              <!-- Twitter widget-->
+              <aside class="widget twitter-feed-widget">
+                <div class="widget-title">
+                  <h6>Contact</h6>
+                </div>
+                <div class="textwidget">
+                  <p>
+                    Location: 12 London Avenue, Suite 18<br>
+                    E-mail: support@theme.com<br>
+                    Phone: 8 800 123 4567<br>
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="copyright">
+                <p>© 2008-2024 Bizeducate Ltd., All Rights Reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer end-->
+  </div>
+  <!-- Wrapper end-->
+
+  <!-- To top button--><a class="scroll-top" href="#top"><i class="fas fa-angle-up"></i></a>
+
+<script src="{% static 'js/custom/jquery.min.js' %}"></script>
+<script src="{% static 'js/custom/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/custom/plugins.min.js' %}"></script>
+<script src="{% static 'js/custom/custom.min.js' %}"></script>
+</body>
+</html>

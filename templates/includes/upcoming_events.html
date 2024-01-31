@@ -1,69 +1,41 @@
 {% load static %}
 <section class="module">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 m-auto text-center">
-            <h1>Upcoming Events</h1>
-            <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="space" data-MY="60px"></div>
-          </div>
-        </div>
-        <div class="row row-post-masonry">
-          {% for course in courses %}
-            <div class="col-md-4 post-item">
-            <!-- Post-->
-              <article class="post">
-                <div class="post-preview"><a href="#"><img src="{% static "images/blog/1.jpg" %}" alt=""></a></div>
-                <div class="post-wrapper">
-                  <div class="post-header">
-                    <h2 class="post-title"><a href="#">{{ course.title }}</a></h2>
-                  </div>
-                  <div class="post-content">
-                    <p>{{  course.country }}</p>
-                    <p>{{  course.course_date|date:"d M Y" }}</p>
-                    <p><a href="#">Read more</a></p>
-                  </div>
-                </div>
-              </article>
-            <!-- Post end-->
-            </div>
-          {% endfor %}
-{#          <div class="col-md-4 post-item">#}
-{#            <!-- Post-->#}
-{#            <article class="post">#}
-{#              <div class="post-preview"><a href="#"><img src="{% static "images/blog/3.jpg" %}" alt=""></a></div>#}
-{#              <div class="post-wrapper">#}
-{#                <div class="post-header">#}
-{#                  <h2 class="post-title"><a href="#">Minimalist Chandelier</a></h2>#}
-{#                </div>#}
-{#                <div class="post-content">#}
-{#                  <p>See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>#}
-{#                  <p><a href="#">Read more</a></p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </article>#}
-{#            <!-- Post end-->#}
-{#          </div>#}
-{#          <div class="col-md-4 post-item">#}
-{#            <!-- Post-->#}
-{#            <article class="post">#}
-{#              <div class="post-preview"><a href="#"><img src="{% static "images/blog/5.jpg" %}" alt=""></a></div>#}
-{#              <div class="post-wrapper">#}
-{#                <div class="post-header">#}
-{#                  <h2 class="post-title"><a href="#">Standard Shape</a></h2>#}
-{#                </div>#}
-{#                <div class="post-content">#}
-{#                  <p>See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>#}
-{#                  <p><a href="#">Read more</a></p>#}
-{#                </div>#}
-{#              </div>#}
-{#            </article>#}
-{#            <!-- Post end-->#}
-{#          </div>#}
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto text-center">
+        <h2>Upcoming Events</h2>
+        <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
       </div>
-    </section>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="space" data-MY="60px"></div>
+      </div>
+    </div>
+    <div class="row row-post-masonry">
+      {% for course in courses %}
+        <div class="col-md-4 post-item">
+          <!-- Post-->
+          <article class="post">
+            <div class="post-preview"><a href="#"><img src="{% static "images/blog/1.jpg" %}" alt=""></a></div>
+            <div class="post-wrapper">
+              <div class="post-header">
+                <h2 class="post-title"><a href="#">{{ course.title }}</a></h2>
+              </div>
+              <div class="post-content">
+                <p>{{  course.country }}</p>
+                <p>{{  course.course_date|date:"d M Y" }}</p>
+                <p><a href="#">Read more</a></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-3 m-auto text-center">
+        <p><a class="btn btn-circle btn-brand" href="#">ALL COURSES</a>
+      </div>
+    </div>
+  </div>
+</section>

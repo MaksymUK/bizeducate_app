@@ -10,3 +10,7 @@ def index(request: HttpRequest) -> HttpResponse:
         "courses": courses
     }
     return render(request, "website/index.html", context=context)
+
+
+def contact_us(request: HttpRequest) -> HttpResponse:
+    return render(request, "website/contact_us.html")

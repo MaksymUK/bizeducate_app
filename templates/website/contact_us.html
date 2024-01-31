@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <!-- Hero-->
+  <section class="module-cover parallax text-center" data-background="{% static "images/module-6.jpg" %}" data-overlay="0.5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Contact Us</h2>
+          <p>We offer professional trainings in world’s most developed countries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero end-->
+
+  <!-- Services-->
+  <section class="module">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-email"></span></div>
+            <div class="icon-box-title">
+              <h6>Drop us a line</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam lorem ipsum amet.</p>
+            </div>
+            <div class="icon-box-link"><a href="#">Read more</a></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-wallet"></span></div>
+            <div class="icon-box-title">
+              <h6>Commercial</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam lorem ipsum amet.</p>
+            </div>
+            <div class="icon-box-link"><a href="#">Read more</a></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-headphone-alt"></span></div>
+            <div class="icon-box-title">
+              <h6>Support</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam lorem ipsum amet.</p>
+            </div>
+            <div class="icon-box-link"><a href="#">Read more</a></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-map-alt"></span></div>
+            <div class="icon-box-title">
+              <h6>Visit our office</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam lorem ipsum amet.</p>
+            </div>
+            <div class="icon-box-link"><a href="#">Read more</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Services end-->
+
+  <!-- Form-->
+  <section class="module divider-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h1>Let's talk.</h1>
+          <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="space" data-MY="60px"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form id="contact-form" method="post" novalidate>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="name" placeholder="Name" required="">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input class="form-control" type="email" name="email" placeholder="E-mail" required="">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="subject" placeholder="Subject" required="">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea class="form-control" name="message" placeholder="Message" rows="12" required=""></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <p></p>
+                <div class="text-center">
+                  <input class="btn btn-circle btn-brand" type="submit" value="Send Message">
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- Ajax response-->
+          <div class="ajax-response text-center" id="contact-response"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Form end-->
+
+  <!-- Map-->
+  <section class="maps-container">
+    <div class="map" data-addresses="[48.859822, 2.352647]" data-info="[Lorem ipsum dolor sit amet.]" data-icon="{% static "images/map-icon.png" %}" data-zoom="15"></div>
+  </section>
+  <!-- Map end-->
+{% endblock %}

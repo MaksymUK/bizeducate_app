@@ -4,6 +4,7 @@ from django.db import models
 class Venue(models.Model):
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
+    venue_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     class Meta:
         ordering = ["country"]
@@ -28,6 +29,7 @@ class Trainer(models.Model):
     qualification = models.CharField(max_length=500, blank=True)
     profile = models.TextField(max_length=1000, blank=True)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, blank=True, related_name="trainers")
+    trainer_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return f"Trainer: {self.first_name} {self.last_name}"

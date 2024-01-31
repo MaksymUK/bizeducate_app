@@ -5,7 +5,7 @@ from website.models import Venue, Category, Trainer, Course
 
 @admin.register(Venue)
 class VenueAdmin(admin.ModelAdmin):
-    list_display = ["city", "country"]
+    list_display = ["city", "country", "venue_image"]
     list_filter = ["country"]
 
 

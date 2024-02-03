@@ -10,7 +10,7 @@ class Venue(models.Model):
         ordering = ["country"]
 
     def __str__(self):
-        return f"{self.city},{self.country}"
+        return f"{self.city}, {self.country}"
 
 
 class Category(models.Model):

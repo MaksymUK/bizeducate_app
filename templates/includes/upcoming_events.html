@@ -17,15 +17,15 @@
         <div class="col-md-4 post-item">
           <!-- Post-->
           <article class="post">
-            <div class="post-preview"><a href="#"><img src="{% static "images/blog/1.jpg" %}" alt=""></a></div>
+            <div class="post-preview"><a href="{% url 'website:course-detail' pk=course.id %}"><img src="{{ course.venue.venue_image.url }}" style="width: 330px; height: 220px;" alt="city"></a></div>
             <div class="post-wrapper">
               <div class="post-header">
-                <h2 class="post-title"><a href="#">{{ course.title }}</a></h2>
+                <h2 class="post-title"><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a></h2>
               </div>
               <div class="post-content">
-                <p>{{  course.country }}</p>
-                <p>{{  course.course_date|date:"d M Y" }}</p>
-                <p><a href="#">Read more</a></p>
+                <p>{{  course.venue }} | {{  course.start_date|date:"d M Y" }}</p>
+                <p>{{ course.overview|truncatechars:200 }}</p>
+                <p><a href="{% url 'website:course-detail' pk=course.id %}">Read more</a></p>
               </div>
             </div>
           </article>
@@ -34,7 +34,7 @@
     </div>
     <div class="row mt-5">
       <div class="col-md-3 m-auto text-center">
-        <p><a class="btn btn-circle btn-brand" href="#">ALL COURSES</a>
+        <p><a class="btn btn-circle btn-brand" href="{% url 'website:course-list' %}">ALL COURSES</a>
       </div>
     </div>
   </div>

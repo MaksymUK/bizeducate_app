@@ -19,7 +19,6 @@
     {% if course_list %}
       <table class="table">
         <tr>
-          <th>ID</th>
           <th>Title</th>
           <th>City</th>
           <th>Start Date</th>
@@ -27,7 +26,6 @@
         </tr>
         {% for course in course_list %}
           <tr>
-            <td>{{ course.id }}</td>
             <td><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a></td>
             <td>{{ course.venue.city }}</td>
             <td>{{ course.start_date|date:"d M Y" }}</td>

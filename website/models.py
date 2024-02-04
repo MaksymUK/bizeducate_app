@@ -38,9 +38,9 @@ class Trainer(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=255, unique=True)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, blank=True, related_name="courses")
-    venue = models.ForeignKey(Venue, on_delete=models.DO_NOTHING, blank=True, related_name="courses")
-    start_date = models.DateField(blank=True)
-    end_date = models.DateField(blank=True)
+    venue = models.ForeignKey(Venue, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="courses")
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
     overview = models.TextField(max_length=500, blank=True)
     audience = models.TextField(max_length=500, blank=True)
     learning_outcome = models.TextField(max_length=500, blank=True)

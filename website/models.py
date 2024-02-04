@@ -42,6 +42,9 @@ class Course(models.Model):
     start_date = models.DateField(blank=True)
     end_date = models.DateField(blank=True)
     overview = models.TextField(max_length=500, blank=True)
+    audience = models.TextField(max_length=500, blank=True)
+    learning_outcome = models.TextField(max_length=500, blank=True)
+    key_questions = models.TextField(max_length=500, blank=True)
     trainers = models.ManyToManyField(Trainer, related_name="courses")
 
     class Meta:

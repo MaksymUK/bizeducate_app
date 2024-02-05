@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 
+from .forms import CourseSearchForm
 from .models import Course, Trainer
 
 
@@ -25,10 +26,33 @@ class CourseListView(generic.ListView):
     paginate_by = 5
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(CourseListView, self).get_context_data(**kwargs)
         categories = set(course.category for course in context['course_list'])
-        context['trainers'] = Trainer.objects.filter(category__in=categories)
+        title = self.request.GET.get("title", "")
+        category = self.request.GET.get("category", "")
+        city = self.request.GET.get("city", "")
+        context.update({
+            "trainers": Trainer.objects.filter(category__in=categories),
+            "search_form": CourseSearchForm(initial={"title": title, "category": category, "city": city})
+        })
         return context
+
+    def get_queryset(self):
+        queryset = Course.objects.all()
+        form = CourseSearchForm(self.request.GET)
+        if form.is_valid():
+            title_query = form.cleaned_data.get("title", "")
+            category_query = form.cleaned_data.get("category")
+            city_query = form.cleaned_data.get("city", "")
+
+            if title_query:
+                queryset = queryset.filter(title__icontains=title_query)
+            if category_query:
+                queryset = queryset.filter(category=category_query)
+            if city_query:
+                queryset = queryset.filter(venue__city__icontains=city_query)
+
+        return queryset
 
 
 class CourseDetailView(generic.DetailView):

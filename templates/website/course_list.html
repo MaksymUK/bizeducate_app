@@ -55,4 +55,8 @@
       <p>Sorry, we don't have any courses in the list now.</p>
     {% endif %}
   </div>
+
+  {% block pagination %}
+    {% include "includes/pagination.html" %}
+  {% endblock %}
 {% endblock %}

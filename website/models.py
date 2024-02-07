@@ -1,4 +1,7 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+from django.conf import settings
 
 
 class Venue(models.Model):
@@ -52,3 +55,21 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Author(AbstractUser):
+    company = models.CharField(max_length=255, blank=True)
+    position = models.CharField(max_length=255, blank=True)
+    company_logo = models.ImageField(null=True, blank=True, upload_to="logos/")
+
+    class Meta:
+        ordering = ["first_name"]
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+class Testimonial(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    comment = models.TextField(max_length=500)
+    date = models.DateTimeField(auto_now_add=True)

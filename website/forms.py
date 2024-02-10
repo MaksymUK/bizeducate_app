@@ -1,5 +1,9 @@
 from django import forms
-from website.models import Category
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Layout
+from django.contrib.auth.forms import UserCreationForm
+
+from website.models import Category, Author
 
 
 class CourseSearchForm(forms.Form):
@@ -21,3 +25,7 @@ class CourseSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by city"}),
     )
+
+
+class AuthorCreateForm(UserCreationForm):
+    pass

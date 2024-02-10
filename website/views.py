@@ -3,8 +3,8 @@ from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CourseSearchForm
-from .models import Course, Trainer
+from .forms import CourseSearchForm, AuthorCreateForm
+from .models import Course, Trainer, Testimonial, Author
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -57,6 +57,36 @@ class CourseListView(generic.ListView):
 
 class CourseDetailView(generic.DetailView):
     model = Course
+
+
+class TestimonialDetailView(generic.DetailView):
+    model = Testimonial
+
+
+class TestimonialListView(generic.ListView):
+    model = Testimonial
+
+
+class AuthorCreateView(generic.CreateView):
+    model = Author
+    form_class = AuthorCreateForm
+    success_url = reverse_lazy("website:testimonial-list")
+
+
+class AuthorUpdateView(generic.UpdateView):
+    model = Author
+    fields = ["first_name", "last_name", "email", "company", "position", "company_logo"]
+    success_url = reverse_lazy("website:testimonial-list")
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+
+
+class AuthorDeleteView(generic.DeleteView):
+    model = Author
+    template_name = "website/author_delete_confirmation.html"
+    success_url = reverse_lazy("website:testimonial-list")
 
 
 class FinanceListView(CourseListView):

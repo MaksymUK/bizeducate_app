@@ -28,4 +28,7 @@ class CourseSearchForm(forms.Form):
 
 
 class AuthorCreateForm(UserCreationForm):
-    pass
+    class Meta:
+        model = Author
+        fields = ["username", "email", "password1", "password2",
+                  "first_name", "last_name", "company", "position", "company_logo"]

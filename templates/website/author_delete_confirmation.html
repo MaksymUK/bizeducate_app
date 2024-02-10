@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <section class="module parallax text-center" data-background="{% static 'images/module-5.jpg' %}" data-overlay="0.6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 m-auto">
+          <div class="m-b-20">
+            <h3>Delete account</h3>
+            <p class="lead">Are you sure you want to delete your account?</p>
+          </div>
+          <div class="m-b-20">
+            <form action="" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-lg btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -66,9 +66,15 @@
       </div>
       <div class="extra-nav">
         <ul>
-          <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Log in</span></a>
-          </li>
-          <li><a class="off-canvas-open" href="#"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+          {% if user.is_authenticated %}
+            <li class="menu-item-has-children"><a href="{% url 'website:author-detail' pk=user.id %}"><span class="menu-item-span">{{ user.get_username }}</span></a></li>
+              <ul class="sub-menu">
+                <li><a href="{% url 'logout'%}?next={{request.path}}"><span class="menu-item-span">Logout</span></a></li>
+              </ul>
+          {% else %}
+            <li><a href="{% url 'login' %}?next={{request.path}}"><span class="menu-item-span">Login</span></a></li>
+            <li><a href="{% url "website:author-create" %}"><span class="menu-item-span">Register</span></a></li>
+          {% endif %}
           <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
         </ul>
       </div>
@@ -97,7 +103,7 @@
               </aside>
             </div>
             <div class="col-md-4">
-              <!-- Recent entries widget-->
+              <!-- Quick links widget-->
               <aside class="widget widget-recent-entries">
                 <div class="widget-title">
                   <h6>Quick Links</h6>

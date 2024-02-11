@@ -36,7 +36,7 @@ class AuthorAdmin(UserAdmin):
 
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
-    list_display = ["comment", "date", "author"]
+    list_display = ["comment", "date", "owner"]
 
 
 admin.site.unregister(Group)

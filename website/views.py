@@ -1,9 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CourseSearchForm, AuthorCreateForm
+from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm
 from .models import Course, Trainer, Testimonial, Author
 
 
@@ -65,6 +66,16 @@ class TestimonialDetailView(generic.DetailView):
 
 class TestimonialListView(generic.ListView):
     model = Testimonial
+
+
+class TestimonialCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Testimonial
+    form_class = TestimonialCreateForm
+    success_url = reverse_lazy("website:contact-us")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 class AuthorCreateView(generic.CreateView):

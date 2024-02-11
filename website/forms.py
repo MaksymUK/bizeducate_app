@@ -1,9 +1,10 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from website.models import Category, Author
+from website.models import Category, Author, Testimonial
 
 
 class CourseSearchForm(forms.Form):
@@ -31,4 +32,12 @@ class AuthorCreateForm(UserCreationForm):
     class Meta:
         model = Author
         fields = ["username", "email", "password1", "password2",
-                  "first_name", "last_name", "company", "position", "company_logo"]
+                  "first_name", "last_name"]
+
+
+class TestimonialCreateForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ["comment"]
+
+

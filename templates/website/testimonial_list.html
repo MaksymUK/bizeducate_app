@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if testimonial_list %}
+    {% for testimonial in testimonial_list %}
+      <p class="lead">{{ testimonial.comment }}</p>
+      <p>{{ testimonial.date }}</p>
+      <p>{{ testimonial.author }}</p>
+    {% endfor %}
+  {% endif %}
+
+{% endblock %}

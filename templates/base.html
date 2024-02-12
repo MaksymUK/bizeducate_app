@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static "css/plugins.min.css" %}">
   <link rel="stylesheet" href="{% static "css/template.css" %}">
+  <link rel="stylesheet" href="{% static "css/owl.carousel.css" %}">
 
 
 
@@ -69,10 +70,10 @@
           {% if user.is_authenticated %}
             <li class="menu-item-has-children"><a href="{% url 'website:author-detail' pk=user.id %}"><span class="menu-item-span">{{ user.get_username }}</span></a></li>
               <ul class="sub-menu">
-                <li><a href="{% url 'logout'%}?next={{request.path}}"><span class="menu-item-span">Logout</span></a></li>
+                <li><a href="{% url 'logout'%}"><span class="menu-item-span">Logout</span></a></li>
               </ul>
           {% else %}
-            <li><a href="{% url 'login' %}?next={{request.path}}"><span class="menu-item-span">Login</span></a></li>
+            <li><a href="{% url 'login' %}"><span class="menu-item-span">Login</span></a></li>
             <li><a href="{% url "website:author-create" %}"><span class="menu-item-span">Register</span></a></li>
           {% endif %}
           <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>

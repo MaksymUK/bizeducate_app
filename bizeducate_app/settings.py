@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from dotenv import load_dotenv
 from django.template.context_processors import media
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-13e@#sj0rdi*p5k4l31!japr6sl6w-@rr2_!)0&*e5$ud=_q$g'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'crispy_forms',
     "website",
+    "anymail"
 ]
 
 MIDDLEWARE = [
@@ -148,3 +151,10 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
+ANYMAIL = {
+    "POSTMARK_SERVER_TOKEN": os.getenv('POSTMARK_SERVER_TOKEN'),
+}
+
+EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
+
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')

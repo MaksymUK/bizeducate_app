@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm
+from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm, ContactForm
 from .models import Course, Trainer, Testimonial, Author
 
 
@@ -18,7 +19,21 @@ def index(request: HttpRequest) -> HttpResponse:
 
 
 def contact_us(request: HttpRequest) -> HttpResponse:
-    return render(request, "website/contact_us.html")
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            send_mail(
+                form.cleaned_data['company'],  # subject
+                f"Message from {form.cleaned_data['name']} <{form.cleaned_data['email']}>\n\n"
+                f"{form.cleaned_data['message']}",  # message
+                None,  # from email
+                ['max@bizeducate.com'],  # replace with your email
+            )
+            return render(request, 'website/contact_us_success.html')
+    else:
+        form = ContactForm()
+
+    return render(request, 'website/contact_us.html', {'form': form})
 
 
 class CourseListView(generic.ListView):
@@ -66,6 +81,8 @@ class TestimonialDetailView(generic.DetailView):
 
 class TestimonialListView(generic.ListView):
     model = Testimonial
+    template_name = "website/testimonial_list.html"
+    paginate_by = 10
 
 
 class TestimonialCreateView(LoginRequiredMixin, generic.CreateView):

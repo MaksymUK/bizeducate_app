@@ -43,6 +43,9 @@
         <div class="inner-nav">
           <ul>
             <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">About</span></a>
+              <ul class="sub-menu">
+                <li class="menu-item-span"><a href="{% url "website:testimonial-list" %}">Testimonials</a></li>
+              </ul>
             </li>
             <li class="menu-item-has-children"><a href="{% url 'website:course-list' %}"><span class="menu-item-span">Open Courses</span></a>
               <ul class="sub-menu">
@@ -68,13 +71,11 @@
       <div class="extra-nav">
         <ul>
           {% if user.is_authenticated %}
-            <li class="menu-item-has-children"><a href="{% url 'website:author-detail' pk=user.id %}"><span class="menu-item-span">{{ user.get_username }}</span></a></li>
-              <ul class="sub-menu">
-                <li><a href="{% url 'logout'%}"><span class="menu-item-span">Logout</span></a></li>
-              </ul>
+            <li><a class="font-weight-light" href="{% url 'website:author-detail' pk=user.id %}"><span class="menu-item-span">{{ user.get_username }}</span></a></li>
+            <li><a class="font-weight-light" href="{% url 'logout'%}"><span class="menu-item-span">Logout</span></a></li>
           {% else %}
-            <li><a href="{% url 'login' %}"><span class="menu-item-span">Login</span></a></li>
-            <li><a href="{% url "website:author-create" %}"><span class="menu-item-span">Register</span></a></li>
+            <li><a class="font-weight-light" href="{% url 'login' %}"><span class="menu-item-span">Login</span></a></li>
+            <li><a class="font-weight-light" href="{% url "website:author-create" %}"><span class="menu-item-span">Register</span></a></li>
           {% endif %}
           <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
         </ul>

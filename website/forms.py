@@ -41,3 +41,9 @@ class TestimonialCreateForm(forms.ModelForm):
         fields = ["comment"]
 
 
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    company = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+

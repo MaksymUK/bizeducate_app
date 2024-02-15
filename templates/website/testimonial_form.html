@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-8 m-auto">
           <div class="m-b-20 m-t-20">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               {{ form|crispy }}
               <button class="btn btn-block btn-round btn-brand w-50 m-auto" type="submit">Submit</button>

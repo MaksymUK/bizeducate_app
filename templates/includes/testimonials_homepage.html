@@ -18,9 +18,20 @@
            <p>{{ testimonial.comment }}</p>
         </div>
         <div class="review-card-author">
-          <div class="review-card-author-info">
-            <h6 class="review-card-author-title">{{ testimonial.owner }}</h6>
-          </div>
+          {% if testimonial.author_company_logo %}
+            <div class="w-50 h-50 d-flex m-auto">
+              <img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo">
+            </div>
+            <div class="review-card-author-info mt-3">
+              <h6 class="review-card-author-title">{{ testimonial.author_full_name }}</h6>
+              <p>{{ testimonial.author_position }} | {{ testimonial.author_company }}</p>
+            </div>
+          {% else %}
+            <div class="review-card-author-info">
+              <h6 class="review-card-author-title">{{ testimonial.author_full_name }}</h6>
+              <p>{{ testimonial.author_position }} | {{ testimonial.author_company }}</p>
+            </div>
+          {% endif %}
         </div>
       </div>
       {% endfor %}

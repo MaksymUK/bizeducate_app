@@ -11,9 +11,10 @@ from .models import Course, Trainer, Testimonial, Author
 
 def index(request: HttpRequest) -> HttpResponse:
     courses = Course.objects.all()[0:3]
+    testimonials = Testimonial.objects.all()
     context = {
         "courses": courses,
-        'transparent_header': True,
+        "testimonials": testimonials,
     }
     return render(request, "website/index.html", context=context)
 

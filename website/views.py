@@ -89,7 +89,7 @@ class TestimonialListView(generic.ListView):
 class TestimonialCreateView(LoginRequiredMixin, generic.CreateView):
     model = Testimonial
     form_class = TestimonialCreateForm
-    success_url = reverse_lazy("website:contact-us")
+    success_url = reverse_lazy("website:testimonial-list")
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

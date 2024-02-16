@@ -70,10 +70,10 @@ class Testimonial(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="testimonials")
     comment = models.TextField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
-    author_full_name = models.CharField(max_length=255, blank=True)
-    author_company = models.CharField(max_length=255, blank=True)
-    author_position = models.CharField(max_length=255, blank=True)
-    author_company_logo = models.ImageField(null=True, blank=True, upload_to="logos/")
+    author_full_name = models.CharField(max_length=255)
+    author_company = models.CharField(max_length=255)
+    author_position = models.CharField(max_length=255)
+    author_company_logo = models.ImageField(null=True, upload_to="logos/")
 
     class Meta:
         ordering = ["-date"]

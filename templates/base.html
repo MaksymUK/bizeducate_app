@@ -61,27 +61,74 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">Corporate Training</span></a>
+            <li><a href="#"><span class="menu-item-span">Corporate Training</span></a>
             </li>
-            <li class="menu-item-has-children"><a href="{% url "website:contact-us" %}"><span class="menu-item-span">Contact Us</span></a>
+            <li><a href="{% url "website:contact-us" %}"><span class="menu-item-span">Contact Us</span></a>
             </li>
+            <!-- For mobile devices -->
+            {% if user.is_authenticated %}
+              <li class="menu-item-has-children d-lg-none">
+                <a href="#">
+                  <span class="menu-item-span">{{ user.get_username }}</span>
+                </a>
+                <ul class="sub-menu">
+                  <li><a href="{% url 'website:author-detail' pk=user.id %}">Profile</a></li>
+                  <li><a href="{% url 'logout'%}">Logout</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li class="menu-item-has-children d-lg-none">
+                <a href="{% url 'login' %}">
+                  <span class="menu-item-span">Login</span>
+                </a>
+                <ul class="sub-menu">
+                  <li><a href="{% url "website:author-create" %}">Register</a></li>
+                </ul>
+              </li>
+            {% endif %}
+            <!-- For mobile devices end -->
           </ul>
         </div>
       </div>
-      <div class="extra-nav">
+      <!-- For desktop -->
+      <div class="inner-nav float-right p-0 d-none d-lg-inline-block">
         <ul>
           {% if user.is_authenticated %}
-            <li><a class="font-weight-light" href="{% url 'website:author-detail' pk=user.id %}"><span class="menu-item-span">{{ user.get_username }}</span></a></li>
-            <li><a class="font-weight-light" href="{% url 'logout'%}"><span class="menu-item-span">Logout</span></a></li>
+            <li class="menu-item-has-children">
+              <a href="#">
+                <span class="menu-item-span">{{ user.get_username }}</span>
+              </a>
+              <ul class="sub-menu">
+                <li><a href="{% url 'website:author-detail' pk=user.id %}">Profile</a> </li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
           {% else %}
-            <li><a class="font-weight-light" href="{% url 'login' %}"><span class="menu-item-span">Login</span></a></li>
-            <li><a class="font-weight-light" href="{% url "website:author-create" %}"><span class="menu-item-span">Register</span></a></li>
+            <li class="menu-item-has-children">
+              <a href="{% url 'login' %}">
+                <span class="menu-item-span">Login</span>
+              </a>
+              <ul class="sub-menu">
+                <li><a href="{% url "website:author-create" %}">Register</a></li>
+              </ul>
+            </li>
           {% endif %}
-          <li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
         </ul>
       </div>
+      <!-- For desktop end -->
+
+      <!-- Extra nav-->
+      <div class="extra-nav">
+        <ul>
+          <li class="nav-toggle">
+            <a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Extra nav end -->
     </div>
   </header>
+
 <!-- Header end-->
 <!-- Wrapper-->
   <div class="wrapper">

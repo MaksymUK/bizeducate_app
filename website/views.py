@@ -77,8 +77,8 @@ class CourseDetailView(generic.DetailView):
     model = Course
 
 
-class TestimonialDetailView(generic.DetailView):
-    model = Testimonial
+# class TestimonialDetailView(generic.DetailView):
+#     model = Testimonial
 
 
 class TestimonialListView(generic.ListView):
@@ -95,6 +95,21 @@ class TestimonialCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+
+class TestimonialUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Testimonial
+    fields = ["author_full_name", "author_company", "comment", "author_company_logo"]
+
+    def get_success_url(self):
+        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.owner.pk})
+
+
+class TestimonialDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Testimonial
+
+    def get_success_url(self):
+        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.owner.pk})
 
 
 class AuthorCreateView(generic.CreateView):

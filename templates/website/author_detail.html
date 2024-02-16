@@ -63,12 +63,12 @@
           <div class="row row-post-thumbnail">
             <!-- Testimonial-->
             {% for testimonial in testimonials %}
-              <article class="post row align-items-start">
+              <article class="post row align-items-start mb-0 pt-3">
                 <div class="col-md-5">
                   <div class="post-preview w-50 h-50 d-flex m-auto"><img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo"></div>
                 </div>
                 <div class="col-md-7">
-                  <blockquote class="blockquote">
+                  <blockquote class="blockquote mb-0">
                     <p>{{ testimonial.comment }}</p>
                     <footer class="blockquote-footer">{{ testimonial.author_full_name}}, {{ testimonial.author_position }} at {{ testimonial.author_company }}
                       <p>{{ testimonial.date|date:"d M Y" }}</p>
@@ -76,6 +76,14 @@
                   </blockquote>
                 </div>
               </article>
+              <div class="form-row m-auto pb-5">
+                <div class="form-group col-md-6 col-sm-6">
+                  <a class="btn btn-outline-secondary btn-sm" href="{% url 'website:testimonial-update' pk=testimonial.id %}">Edit</a>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                  <a class="btn btn-outline-danger btn-sm" href="{% url 'website:testimonial-delete' pk=testimonial.id %}">Delete</a>
+                </div>
+              </div>
             {% endfor %}
               <!-- Testimonial end-->
           </div>

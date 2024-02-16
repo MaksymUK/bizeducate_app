@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
@@ -110,6 +111,26 @@ class AuthorUpdateView(generic.UpdateView):
 
 class AuthorDetailView(generic.DetailView):
     model = Author
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        testimonials = Testimonial.objects.filter(owner=self.object)
+        paginator = Paginator(testimonials, self.paginate_by)
+        page_number = self.request.GET.get('page')
+
+        try:
+            page_obj = paginator.page(page_number)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj = paginator.page(paginator.num_pages)
+
+        context["testimonials"] = page_obj
+        context["paginator"] = paginator
+        context["page_obj"] = page_obj
+        context["is_paginated"] = page_obj.has_other_pages()
+        return context
 
 
 class AuthorDeleteView(generic.DeleteView):

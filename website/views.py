@@ -83,7 +83,7 @@ class TestimonialDetailView(generic.DetailView):
 class TestimonialListView(generic.ListView):
     model = Testimonial
     template_name = "website/testimonial_list.html"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class TestimonialCreateView(LoginRequiredMixin, generic.CreateView):

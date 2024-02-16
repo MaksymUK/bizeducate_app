@@ -1,12 +1,51 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  {% if testimonial_list %}
-    {% for testimonial in testimonial_list %}
-      <p class="lead">{{ testimonial.comment }}</p>
-      <p>{{ testimonial.date }}</p>
-      <p>{{ testimonial.author }}</p>
-    {% endfor %}
-  {% endif %}
+  <!-- Page Header-->
+  <section class="module parallax" data-background="{% static 'images/london-2.jpg' %}" data-overlay="0.7">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h2>What our clients say about us</h2>
+          <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end -->
+
+  <!-- Testimonials -->
+  <section class="module">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 m-auto text-left">
+          <div class="row row-post-thumbnail">
+            <!-- Post-->
+            {% for testimonial in testimonial_list %}
+              <article class="post row align-items-start">
+                <div class="col-md-5">
+                  <div class="post-preview w-50 h-50 d-flex m-auto"><img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo"></div>
+                </div>
+                <div class="col-md-7">
+                  <blockquote class="blockquote">
+                    <p>{{ testimonial.comment }}</p>
+                    <footer class="blockquote-footer">{{ testimonial.author_full_name}}, {{ testimonial.author_position }} at {{ testimonial.author_company }}
+                      <p>{{ testimonial.date|date:"d M Y" }}</p>
+                    </footer>
+                  </blockquote>
+                </div>
+              </article>
+            {% endfor %}
+            <!-- Post end-->
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
+  </section>
+  <!-- Testimonials end -->
 
 {% endblock %}

@@ -51,13 +51,11 @@
               <ul class="sub-menu">
                 <li class="menu-item-span"><a href="{% url "website:finance-list" %}">Finance</a>
                 </li>
-                <li class="menu-item-span"><a href="#">Procurement</a>
+                <li class="menu-item-span"><a href="{% url "website:procurement-list" %}">Procurement</a>
                 </li>
-                <li class="menu-item-span"><a href="#">HR</a>
+                <li class="menu-item-span"><a href="{% url "website:hr-list" %}">HR</a>
                 </li>
-                <li class="menu-item-span"><a href="#">Corporate Law</a>
-                </li>
-                <li class="menu-item-span"><a href="#">Other</a>
+                <li class="menu-item-span"><a href="{% url "website:cg-list" %}">Corporate Governance</a>
                 </li>
               </ul>
             </li>
@@ -158,10 +156,10 @@
                   <h6>Quick Links</h6>
                 </div>
                 <ul>
-                  <li><a href="#">Open Courses</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="{% url "website:course-list" %}">Open Courses</a></li>
                   <li><a href="#">Corporate Training</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">Terms&Conditions</a></li>
+                  <li><a href="{% url "website:contact-us" %}">Contact Us</a></li>
                 </ul>
               </aside>
             </div>
@@ -175,8 +173,8 @@
                   <p>
                     Location: 124 City Road, London, EC1 2NX, United Kingdom<br>
                     E-mail: office@bizeducate.com<br>
-                    London: +4420 3329 9999<br>
-                    Astana: +7 7172 9999<br>
+                    London: +44 20 3329 9999<br>
+                    Astana: +7 7172 9999 999<br>
                   </p>
                 </div>
               </aside>

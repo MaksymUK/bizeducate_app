@@ -31,8 +31,7 @@ class CourseSearchForm(forms.Form):
 class AuthorCreateForm(UserCreationForm):
     class Meta:
         model = Author
-        fields = ["username", "email", "password1", "password2",
-                  "first_name", "last_name"]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
 
 
 class TestimonialCreateForm(forms.ModelForm):

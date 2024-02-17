@@ -115,13 +115,17 @@ class TestimonialDeleteView(LoginRequiredMixin, generic.DeleteView):
 class AuthorCreateView(generic.CreateView):
     model = Author
     form_class = AuthorCreateForm
-    success_url = reverse_lazy("website:testimonial-list")
+
+    def get_success_url(self):
+        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.pk})
 
 
 class AuthorUpdateView(generic.UpdateView):
     model = Author
-    fields = ["first_name", "last_name", "email", "company", "position", "company_logo"]
-    success_url = reverse_lazy("website:testimonial-list")
+    fields = ["first_name", "last_name", "email"]
+
+    def get_success_url(self):
+        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.pk})
 
 
 class AuthorDetailView(generic.DetailView):
@@ -151,7 +155,7 @@ class AuthorDetailView(generic.DetailView):
 class AuthorDeleteView(generic.DeleteView):
     model = Author
     template_name = "website/author_delete_confirmation.html"
-    success_url = reverse_lazy("website:testimonial-list")
+    success_url = reverse_lazy("website:index")
 
 
 class FinanceListView(CourseListView):

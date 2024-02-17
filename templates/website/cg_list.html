@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+  <!-- Page Header-->
+  <section class="module parallax" data-background="{% static 'images/training_1280.jpg' %}" data-overlay="0.8">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h2>Corporate Governance</h2>
+          <p class="lead">Bizeducate offers corporate governance training courses covering the essential skills and best practices for all Company Directors and Company Secretaries, as well as other senior managers of the business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end-->
+
+  <!--Course list-->
+  <div class="container mt-5 mb-5">
+    {% if course_list %}
+      <table class="table lead">
+        <tr>
+          <th>Title</th>
+          <th>City</th>
+          <th>Start Date</th>
+        </tr>
+        {% for course in course_list %}
+          <tr>
+            <td><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a>
+              <p>{{ course.overview|truncatechars:300 }}</p>
+            </td>
+            <td>{{ course.venue.city }}</td>
+            <td>{{ course.start_date|date:"d M Y" }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>Sorry, we don't have any courses in the list now.</p>
+    {% endif %}
+  </div>
+  <!-- Course list end -->
+
+  <!--Trainers list-->
+   <div class="module">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 m-auto">
+          <h3>Governance specialists who deliver our courses:</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 m-auto">
+          {% for trainer in trainers %}
+            <div class="media">
+              <img src="{{ trainer.trainer_image.url }}" class="mr-3" style="width: 200px; height: auto" alt="trainer">
+              <div class="media-body pl-3">
+                <h5 class="mt-0">{{ trainer.first_name }} {{ trainer.last_name }}</h5>
+                <p>{{ trainer.profile }}</p>
+              </div>
+            </div>
+            <br><br>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Trainers list end-->
+
+{% endblock %}

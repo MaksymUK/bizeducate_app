@@ -164,3 +164,23 @@ class FinanceListView(CourseListView):
     def get_queryset(self):
         return super().get_queryset().filter(category__name__iexact="finance")
 
+
+class ProcurementListView(CourseListView):
+    template_name = "website/procurement_list.html"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(category__name__iexact="procurement")
+
+
+class HrListView(CourseListView):
+    template_name = "website/hr_list.html"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(category__name__iexact="hr")
+
+
+class CgListView(CourseListView):
+    template_name = "website/cg_list.html"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(category__name__iexact="corporate governance")

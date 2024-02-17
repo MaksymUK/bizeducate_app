@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (index, contact_us, CourseListView, CourseDetailView, FinanceListView, TestimonialListView,
                     AuthorCreateView, AuthorDetailView, AuthorUpdateView, AuthorDeleteView, TestimonialCreateView,
-                    TestimonialDeleteView, TestimonialUpdateView)
+                    TestimonialDeleteView, TestimonialUpdateView, HrListView, CgListView, ProcurementListView)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -17,6 +17,9 @@ urlpatterns = [
     path("authors/<int:pk>/update/", AuthorUpdateView.as_view(), name="author-update"),
     path("authors/<int:pk>/delete/", AuthorDeleteView.as_view(), name="author-delete"),
     path("finance/", FinanceListView.as_view(), name="finance-list"),
+    path("procurement/", ProcurementListView.as_view(), name="procurement-list"),
+    path("hr/", HrListView.as_view(), name="hr-list"),
+    path("cg/", CgListView.as_view(), name="cg-list"),
 ]
 
 app_name = "website"

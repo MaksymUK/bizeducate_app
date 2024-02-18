@@ -184,3 +184,11 @@ class CgListView(CourseListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(category__name__iexact="corporate governance")
+
+
+def about_us(request: HttpRequest) -> HttpResponse:
+    testimonials = Testimonial.objects.all()
+    context = {
+        "testimonials": testimonials,
+    }
+    return render(request, "website/about_us.html", context=context)

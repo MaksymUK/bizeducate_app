@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (index, contact_us, CourseListView, CourseDetailView, FinanceListView, TestimonialListView,
                     AuthorCreateView, AuthorDetailView, AuthorUpdateView, AuthorDeleteView, TestimonialCreateView,
                     TestimonialDeleteView, TestimonialUpdateView, HrListView, CgListView, ProcurementListView,
-                    about_us)
+                    about_us, corporate)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -22,6 +22,7 @@ urlpatterns = [
     path("hr/", HrListView.as_view(), name="hr-list"),
     path("cg/", CgListView.as_view(), name="cg-list"),
     path("about/", about_us, name="about"),
+    path("corporate/", corporate, name="corporate"),
 ]
 
 app_name = "website"

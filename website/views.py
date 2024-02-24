@@ -192,3 +192,7 @@ def about_us(request: HttpRequest) -> HttpResponse:
         "testimonials": testimonials,
     }
     return render(request, "website/about_us.html", context=context)
+
+
+def corporate(request: HttpRequest) -> HttpResponse:
+    return render(request, "website/corporate_training.html")

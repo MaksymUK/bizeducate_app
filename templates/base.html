@@ -42,7 +42,7 @@
       <div class="inner-navigation collapse">
         <div class="inner-nav">
           <ul>
-            <li class="menu-item-has-children"><a href="#"><span class="menu-item-span">About</span></a>
+            <li class="menu-item-has-children"><a href="{% url "website:about" %}"><span class="menu-item-span">About</span></a>
               <ul class="sub-menu">
                 <li class="menu-item-span"><a href="{% url "website:testimonial-list" %}">Testimonials</a></li>
               </ul>
@@ -59,7 +59,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="#"><span class="menu-item-span">Corporate Training</span></a>
+            <li><a href="{% url "website:corporate" %}"><span class="menu-item-span">Corporate Training</span></a>
             </li>
             <li><a href="{% url "website:contact-us" %}"><span class="menu-item-span">Contact Us</span></a>
             </li>
@@ -156,9 +156,9 @@
                   <h6>Quick Links</h6>
                 </div>
                 <ul>
-                  <li><a href="#">About</a></li>
+                  <li><a href="{% url "website:about" %}">About</a></li>
                   <li><a href="{% url "website:course-list" %}">Open Courses</a></li>
-                  <li><a href="#">Corporate Training</a></li>
+                  <li><a href="{% url "website:corporate" %}">Corporate Training</a></li>
                   <li><a href="{% url "website:contact-us" %}">Contact Us</a></li>
                 </ul>
               </aside>

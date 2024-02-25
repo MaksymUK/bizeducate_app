@@ -6,7 +6,6 @@ from website.models import Venue, Author
 
 
 class ModelsTests(TestCase):
-    # test Venue model string representation
     def test_venue_string_representation(self):
         venue = Venue(city="London", country="United Kingdom")
         self.assertEqual(str(venue), "London, United Kingdom")

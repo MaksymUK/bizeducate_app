@@ -1,5 +1,4 @@
-from django.contrib.auth import get_user_model
-from website.models import Author
+from website.models import Author, Category
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from PIL import Image
@@ -11,6 +10,7 @@ from website.forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateF
 class FormsTest(TestCase):
     def setUp(self):
         self.user = Author.objects.create(username='test_user')
+        self.category = Category.objects.create(id=1, name="Finance")
 
     def test_testimonial_create_form_with_valid_form(self):
 
@@ -67,5 +67,57 @@ class FormsTest(TestCase):
             "message": "Test Message",
         }
         form = ContactForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data, form_data)
+
+    def test_contact_form_without_completed_fields(self):
+        form_data = {}
+        form = ContactForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("name", form.errors)
+        self.assertIn("email", form.errors)
+        self.assertIn("company", form.errors)
+        self.assertIn("message", form.errors)
+
+    def test_author_create_form(self):
+        form_data = {
+            "username": "test_3",
+            "first_name": "Test Name",
+            "last_name": "Test Surname",
+            "email": "test_name@yahoo.com",
+            "password1": "User123!_k",
+            "password2": "User123!_k",
+        }
+        form = AuthorCreateForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data, form_data)
+
+    def test_course_search_form_by_title(self):
+        form_data = {
+            "title": "Test Title",
+            "category": None,
+            "city": "",
+        }
+        form = CourseSearchForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data, form_data)
+
+    def test_course_search_form_by_category(self):
+        form_data = {
+            "title": "",
+            "category": self.category,
+            "city": "",
+        }
+        form = CourseSearchForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data, form_data)
+
+    def test_course_search_form_by_city(self):
+        form_data = {
+            "title": "",
+            "category": None,
+            "city": "London"
+        }
+        form = CourseSearchForm(data=form_data)
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data, form_data)

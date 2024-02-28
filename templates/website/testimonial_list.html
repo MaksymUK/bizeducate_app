@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %} <title>Testimonials</title> {% endblock %}
+
 {% block content %}
   <!-- Page Header-->
   <section class="module parallax" data-background="{% static 'images/london-2.jpg' %}" data-overlay="0.7">
@@ -15,13 +17,13 @@
   </section>
   <!-- Page Header end -->
 
-  <!-- Testimonials -->
+  <!-- Testimonial list -->
   <section class="module">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 m-auto text-left">
           <div class="row row-post-thumbnail">
-            <!-- Post-->
+            <!-- Testimonial-->
             {% for testimonial in testimonial_list %}
               <article class="post row align-items-start">
                 <div class="col-md-5">
@@ -37,7 +39,7 @@
                 </div>
               </article>
             {% endfor %}
-            <!-- Post end-->
+            <!-- Testimonial end-->
           </div>
         </div>
       </div>
@@ -46,6 +48,6 @@
       {% include "includes/pagination.html" %}
     {% endblock %}
   </section>
-  <!-- Testimonials end -->
+  <!-- Testimonial list end -->
 
 {% endblock %}

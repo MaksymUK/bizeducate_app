@@ -44,9 +44,25 @@
         </div>
       </div>
     </div>
+
     {% block pagination %}
       {% include "includes/pagination.html" %}
     {% endblock %}
+
+    {% if user.is_authenticated %}
+    <div class="row mt-5">
+      <div class="col-md-12 m-auto text-center">
+        <p><a class="btn btn-circle btn-outline-danger" href="{% url "website:testimonial-create" %}">LEAVE FEEDBACK</a>
+      </div>
+    </div>
+    {% else %}
+      <div class="row mt-5">
+        <div class="col-md-12 m-auto text-center">
+          <p><a class="btn btn-circle btn-outline-danger" href="{% url "website:author-create" %}">Register to leave feedback</a>
+        </div>
+      </div>
+    {% endif %}
+
   </section>
   <!-- Testimonial list end -->
 

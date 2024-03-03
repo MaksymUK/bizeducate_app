@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm, ContactForm
 from .models import Course, Trainer, Testimonial, Author
@@ -120,7 +120,7 @@ class AuthorCreateView(generic.CreateView):
         return response
 
     def get_success_url(self):
-        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.pk})
+        return reverse("website:author-detail", kwargs={"pk": self.object.pk})
 
 
 class AuthorUpdateView(generic.UpdateView):

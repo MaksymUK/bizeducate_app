@@ -3,8 +3,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
-from django.urls import reverse_lazy
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm, ContactForm
 from .models import Course, Trainer, Testimonial, Author
@@ -77,10 +77,6 @@ class CourseDetailView(generic.DetailView):
     model = Course
 
 
-# class TestimonialDetailView(generic.DetailView):
-#     model = Testimonial
-
-
 class TestimonialListView(generic.ListView):
     model = Testimonial
     template_name = "website/testimonial_list.html"
@@ -115,6 +111,13 @@ class TestimonialDeleteView(LoginRequiredMixin, generic.DeleteView):
 class AuthorCreateView(generic.CreateView):
     model = Author
     form_class = AuthorCreateForm
+    template_name = "website/author_form.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        self.object.set_password(form.cleaned_data["password1"])
+        self.object.save()
+        return response
 
     def get_success_url(self):
         return reverse_lazy("website:author-detail", kwargs={"pk": self.object.pk})
@@ -125,7 +128,7 @@ class AuthorUpdateView(generic.UpdateView):
     fields = ["first_name", "last_name", "email"]
 
     def get_success_url(self):
-        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.pk})
+        return self.object.get_absolute_url()
 
 
 class AuthorDetailView(generic.DetailView):

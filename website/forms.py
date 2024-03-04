@@ -34,7 +34,7 @@ class AuthorCreateForm(UserCreationForm):
 class TestimonialCreateForm(forms.ModelForm):
     class Meta:
         model = Testimonial
-        fields = ["author_full_name", "author_company", "comment", "author_company_logo"]
+        fields = ["author_full_name", "author_position", "author_company", "comment", "author_company_logo"]
 
 
 class ContactForm(forms.Form):

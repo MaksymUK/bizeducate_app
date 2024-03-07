@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
@@ -6,7 +8,12 @@ from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 
-from .forms import CourseSearchForm, AuthorCreateForm, TestimonialCreateForm, ContactForm
+from .forms import (
+    CourseSearchForm,
+    AuthorCreateForm,
+    TestimonialCreateForm,
+    ContactForm,
+)
 from .models import Course, Trainer, Testimonial, Author
 
 
@@ -20,22 +27,24 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "website/index.html", context=context)
 
 
-def contact_us(request: HttpRequest) -> HttpResponse:
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            send_mail(
-                form.cleaned_data['company'],  # subject
-                f"Message from {form.cleaned_data['name']} <{form.cleaned_data['email']}>\n\n"
-                f"{form.cleaned_data['message']}",  # message
-                None,  # from email
-                ['max@bizeducate.com'],  # replace with your email
-            )
-            return render(request, 'website/contact_us_success.html')
-    else:
-        form = ContactForm()
+class ContactUsView(generic.FormView):
+    form_class = ContactForm
+    template_name = "website/contact_us.html"
+    success_url = reverse_lazy('website:contact_us_success')
 
-    return render(request, 'website/contact_us.html', {'form': form})
+    def form_valid(self, form):
+        send_mail(
+            form.cleaned_data["company"],
+            f"Message from {form.cleaned_data['name']} <{form.cleaned_data['email']}>\n\n"
+            f"{form.cleaned_data['message']}",
+            None,  # from email
+            [os.getenv("RECIPIENT_EMAIL_ADDRESS")],
+        )
+        return super().form_valid(form)
+
+
+def contact_us_success(request: HttpRequest) -> HttpResponse:
+    return render(request, 'website/contact_us_success.html')
 
 
 class CourseListView(generic.ListView):
@@ -45,14 +54,18 @@ class CourseListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseListView, self).get_context_data(**kwargs)
-        categories = set(course.category for course in context['course_list'])
+        categories = set(course.category for course in context["course_list"])
         title = self.request.GET.get("title", "")
         category = self.request.GET.get("category", "")
         city = self.request.GET.get("city", "")
-        context.update({
-            "trainers": Trainer.objects.filter(category__in=categories),
-            "search_form": CourseSearchForm(initial={"title": title, "category": category, "city": city})
-        })
+        context.update(
+            {
+                "trainers": Trainer.objects.filter(category__in=categories),
+                "search_form": CourseSearchForm(
+                    initial={"title": title, "category": category, "city": city}
+                ),
+            }
+        )
         return context
 
     def get_queryset(self):
@@ -98,14 +111,18 @@ class TestimonialUpdateView(LoginRequiredMixin, generic.UpdateView):
     fields = ["author_full_name", "author_company", "comment", "author_company_logo"]
 
     def get_success_url(self):
-        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.owner.pk})
+        return reverse_lazy(
+            "website:author-detail", kwargs={"pk": self.object.owner.pk}
+        )
 
 
 class TestimonialDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Testimonial
 
     def get_success_url(self):
-        return reverse_lazy("website:author-detail", kwargs={"pk": self.object.owner.pk})
+        return reverse_lazy(
+            "website:author-detail", kwargs={"pk": self.object.owner.pk}
+        )
 
 
 class AuthorCreateView(generic.CreateView):
@@ -139,7 +156,7 @@ class AuthorDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         testimonials = Testimonial.objects.filter(owner=self.object)
         paginator = Paginator(testimonials, self.paginate_by)
-        page_number = self.request.GET.get('page')
+        page_number = self.request.GET.get("page")
 
         try:
             page_obj = paginator.page(page_number)
@@ -186,7 +203,9 @@ class CgListView(CourseListView):
     template_name = "website/cg_list.html"
 
     def get_queryset(self):
-        return super().get_queryset().filter(category__name__iexact="corporate governance")
+        return (
+            super().get_queryset().filter(category__name__iexact="corporate governance")
+        )
 
 
 def about_us(request: HttpRequest) -> HttpResponse:

@@ -19,13 +19,22 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Trainer)
 class TrainerAdmin(admin.ModelAdmin):
-    list_display = ["first_name", "last_name", "category",]
+    list_display = [
+        "first_name",
+        "last_name",
+        "category",
+    ]
     list_filter = ["category"]
 
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ["title", "venue", "start_date", "category",]
+    list_display = [
+        "title",
+        "venue",
+        "start_date",
+        "category",
+    ]
     list_filter = ["category", "venue"]
 
 

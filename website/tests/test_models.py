@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
-from website.models import Venue, Category, Trainer, Course, Author, Testimonial
+from website.models import Venue, Category, Trainer, Course, Testimonial
 
 
 class ModelsTests(TestCase):
@@ -48,4 +48,7 @@ class ModelsTests(TestCase):
             author_company="Test Company",
             comment="Test Comment",
         )
-        self.assertEqual(str(testimonial), f"{testimonial.author_full_name}: {testimonial.comment}")
+        self.assertEqual(
+            str(testimonial),
+            f"{testimonial.author_full_name}: {testimonial.comment}",
+        )

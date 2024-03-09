@@ -46,15 +46,19 @@ class PrivateViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = get_user_model().objects.create_user(
-            username='testuser', password='password123'
+            username="testuser", password="password123"
         )
-        self.testimonial = Testimonial.objects.create(owner=self.user, comment="Test Comment")
+        self.testimonial = Testimonial.objects.create(
+            owner=self.user, comment="Test Comment"
+        )
         self.client.force_login(self.user)
 
     def test_delete_testimonial(self):
-        res = self.client.post(reverse('website:testimonial-delete', kwargs={'pk': self.testimonial.pk}))
+        res = self.client.post(
+            reverse(
+                "website:testimonial-delete",
+                kwargs={"pk": self.testimonial.pk},
+            )
+        )
         self.assertEqual(res.status_code, 302)
         self.assertFalse(Testimonial.objects.filter(pk=self.testimonial.pk).exists())
-
-
-

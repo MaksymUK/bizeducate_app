@@ -28,13 +28,26 @@ class CourseSearchForm(forms.Form):
 class AuthorCreateForm(UserCreationForm):
     class Meta:
         model = Author
-        fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        ]
 
 
 class TestimonialCreateForm(forms.ModelForm):
     class Meta:
         model = Testimonial
-        fields = ["author_full_name", "author_position", "author_company", "comment", "author_company_logo"]
+        fields = [
+            "author_full_name",
+            "author_position",
+            "author_company",
+            "comment",
+            "author_company_logo",
+        ]
 
 
 class ContactForm(forms.Form):

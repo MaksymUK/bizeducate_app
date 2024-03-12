@@ -17,7 +17,7 @@ It serves as the online platform for a training company specialising in organisi
 • Responsive Design: The website is designed to be responsive, ensuring a seamless experience across various devices and screen sizes.
 
 ## Check out the live version of the website
-[https://bizeducate.herokuapp.com/](https://bizeducate.herokuapp.com/)
+[https://bizeducate-web-app.onrender.com](https://bizeducate-web-app.onrender.com)
 
 ## Installation
 Python 3.8 or higher is required to run the application.

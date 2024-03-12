@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <!-- Hero-->
+  <section class="module-cover parallax text-center" data-background="{% static "images/contact-us_1280-compressed.jpg" %}" data-overlay="0.5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Contact Us</h2>
+          <p>We offer professional trainings in world’s most developed countries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero end-->
+
+  <!-- Message confirmation-->
+  <section class="module divider-top bg-light">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          <h3>Your message has been sent!</h3>
+          <p class="lead">We will contact you shortly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Message confirmation end-->
+
+{% endblock %}

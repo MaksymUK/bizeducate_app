@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} <title>All Courses</title> {% endblock %}
+
+{% block content %}
+
+  <!-- Page Header-->
+  <section class="module parallax" data-background="{% static 'images/training_1280.jpg' %}" data-overlay="0.8">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h2>Browse Our Courses</h2>
+          <p class="lead">Explore a Wide Range of Learning Opportunities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end -->
+
+  <!-- Search form -->
+  <section class="module bg-light pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 m-auto text-left">
+          <form method="get" action="" class="form-block">
+            {{ search_form|crispy }}
+            <button type="submit" class="btn btn-circle btn-brand">🔍 Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Search form end -->
+
+  <!-- List of all courses-->
+  <section class="module bg-light pt-3">
+    <div class="container">
+      {% if course_list %}
+        <table class="table">
+          <tr>
+            <th>Title</th>
+            <th>City</th>
+            <th>Start Date</th>
+            <th>Category</th>
+          </tr>
+          {% for course in course_list %}
+            <tr>
+              <td><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a></td>
+              <td>{{ course.venue.city }}</td>
+              <td>{{ course.start_date|date:"d M Y" }}</td>
+              <td>{{ course.category}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>Sorry, we don't have any courses in the list now.</p>
+      {% endif %}
+    </div>
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
+  </section>
+  <!-- List of all courses end -->
+
+{% endblock %}

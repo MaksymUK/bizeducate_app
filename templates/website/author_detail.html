@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- Hero -->
+  <section class="module parallax text-center" data-background="{% static 'images/london2_1280-compressed.jpg' %}" data-overlay="0.6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 m-auto">
+          <div class="m-b-20">
+            <h2>Account profile</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero end -->
+
+  <!-- Profile details -->
+  <section class="bg-light">
+    <div class="container">
+      <div class="row pt-3">
+        <div class="col-lg-6 col-md-8 m-auto">
+          <div class="m-b-20 m-t-20">
+            <h4 class="pb-3">{{ author.first_name }} {{ author.last_name }}</h4>
+            <p class="lead"><span class="text-uppercase">Username:</span> {{ author.username }}</p>
+            <p class="lead"><span class="text-uppercase">Email:</span> {{ author.email }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="space" data-MY="60px"></div>
+      </div>
+      <div class="form-row col-lg-8 col-md-10 m-auto">
+        <div class="form-group col-md-4">
+          <a class="btn btn-block btn-round btn-brand" href="{% url 'website:author-update' pk=author.id %}">Edit profile</a>
+        </div>
+        <div class="form-group col-md-4">
+          <a class="btn btn-block btn-round btn-success"  href="{% url 'website:testimonial-create' %}">Create feedback</a>
+        </div>
+        <div class="form-group col-md-4">
+          <a class="btn btn-block btn-round btn-danger"  href="{% url 'website:author-delete' pk=author.id %}">Delete profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Profile details end -->
+
+  <!-- List of author's testimonials -->
+  {% if testimonials %}
+    <section>
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 m-auto">
+          <div class="m-b-20">
+            <h3>Published testimonials:</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 m-auto text-left">
+          <div class="row row-post-thumbnail">
+            <!-- Testimonial-->
+            {% for testimonial in testimonials %}
+              <article class="post row align-items-start mb-0 pt-3">
+                <div class="col-md-5">
+                  <div class="post-preview w-50 h-50 d-flex m-auto"><img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo"></div>
+                </div>
+                <div class="col-md-7">
+                  <blockquote class="blockquote mb-0">
+                    <p>{{ testimonial.comment }}</p>
+                    <footer class="blockquote-footer">{{ testimonial.author_full_name}}, {{ testimonial.author_position }} at {{ testimonial.author_company }}
+                      <p>{{ testimonial.date|date:"d M Y" }}</p>
+                    </footer>
+                  </blockquote>
+                </div>
+              </article>
+              <div class="form-row m-auto pb-5">
+                <div class="form-group col-md-6 col-sm-6">
+                  <a class="btn btn-outline-secondary btn-sm" href="{% url 'website:testimonial-update' pk=testimonial.id %}">Edit</a>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                  <a class="btn btn-outline-danger btn-sm" href="{% url 'website:testimonial-delete' pk=testimonial.id %}">Delete</a>
+                </div>
+              </div>
+            {% endfor %}
+              <!-- Testimonial end-->
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block pagination %}
+      {% include 'includes/pagination.html' %}
+    {% endblock %}
+  </section>
+  {% endif %}
+  <!-- List of author's testimonials end -->
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} <title>Home page</title> {% endblock %}
+
+{% block content %}
+
+  <!-- Slider-->
+  {% block slider %}
+    {% include "includes/slider.html" %}
+  {% endblock %}
+  <!-- Slider end-->
+
+  <!-- Categories-->
+  {% block categories %}
+    {% include "includes/courses_categories.html" %}
+  {% endblock %}
+  <!-- Categories end-->
+
+  <!-- Counters-->
+  {% block counters %}
+    {% include "includes/counters.html" %}
+  {% endblock %}
+  <!-- Counters end-->
+
+  <!-- Upcoming events-->
+  {% block upcoming_events %}
+    {% include "includes/upcoming_events.html" %}
+  {% endblock %}
+  <!-- Upcoming events end-->
+
+  <!-- Corporate training offer-->
+  {% block corporate_training %}
+    {% include "includes/corp_training_offer.html" %}
+  {% endblock %}
+  <!-- Corporate training offer end-->
+
+  <!-- Clients -->
+  {% block clients %}
+    {% include "includes/clients.html" %}
+  {% endblock %}
+  <!-- Clients end -->
+
+  <!-- Testimonials -->
+  {% block testimonials %}
+    {% include "includes/testimonials_homepage.html" %}
+  {% endblock %}
+  <!-- Testimonials end -->
+
+{% endblock %}

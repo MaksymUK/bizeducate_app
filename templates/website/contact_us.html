@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% block title %} <title>Contact Us</title> {% endblock %}
+
+{% block content %}
+
+  <!-- Hero-->
+  <section class="module-cover parallax text-center" data-background="{% static "images/contact-us_1280-compressed.jpg" %}" data-overlay="0.5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Contact Us</h2>
+          <h5>We offer professional trainings in world’s most developed countries.</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero end-->
+
+  <!-- Services-->
+  <section class="module">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-email"></span></div>
+            <div class="icon-box-title">
+              <h6>Drop us a line</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Feel free to reach out by filling the form below or sending an email to office(at)bizeducate.com<br> We're here to assist you!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-wallet"></span></div>
+            <div class="icon-box-title">
+              <h6>Commercial</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Company's Registered No.967062<br>Bank name: BARCLAYS BANK PLC<br>Bank address: 1 Churchill Place, London E14 5HP, United Kingdom</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-headphone-alt"></span></div>
+            <div class="icon-box-title">
+              <h6>Support</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>Support is just a call away!<br>Reach us over the phone in London at +4420 1234 5678 (WhatsApp) or in Astana at +7 1234 5678.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box text-center">
+            <div class="icon-box-icon"><span class="ti-map-alt"></span></div>
+            <div class="icon-box-title">
+              <h6>Visit our office</h6>
+            </div>
+            <div class="icon-box-content">
+              <p>You can find us at<br> 111 Tavistock Rd, London, EC1V 2NX, United Kingdom.<br> Feel free to drop by.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Services end-->
+
+  <!-- Form-->
+  <section class="module divider-top bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h1>Let's talk.</h1>
+          <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="space" data-MY="60px"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-circle btn-brand" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Form end-->
+
+{% endblock %}

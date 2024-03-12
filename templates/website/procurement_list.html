@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %} <title>Procurement</title> {% endblock %}
+{% block content %}
+
+  <!-- Page Header-->
+  <section class="module parallax" data-background="{% static 'images/procurement_1280-compressed.jpg' %}" data-overlay="0.6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h2>Procurement Courses</h2>
+          <p class="lead">Participation in procurement courses play a vital role in professional development and the success of organisations. They provide the tools and resources necessary to drive best practices, stay ahead of the curve, and achieve strategic procurement objectives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end-->
+
+  <!--Course list-->
+  <div class="container mt-5 mb-5">
+    {% if course_list %}
+      <table class="table lead">
+        <tr>
+          <th>Title</th>
+          <th>City</th>
+          <th>Start Date</th>
+        </tr>
+        {% for course in course_list %}
+          <tr>
+            <td><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a>
+              <p class="lead">{{ course.overview|truncatechars:300 }}</p>
+            </td>
+            <td>{{ course.venue.city }}</td>
+            <td>{{ course.start_date|date:"d M Y" }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>Sorry, we don't have any courses in the list now.</p>
+    {% endif %}
+  </div>
+  <!-- Course list end -->
+
+  <!--Trainers list-->
+   <div class="module">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8 m-auto">
+          <h3>Procurement specialists who deliver our courses:</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 m-auto">
+          {% for trainer in trainers %}
+            <div class="media">
+              <img src="{{ trainer.trainer_image.url }}" class="mr-3" style="width: 200px; height: auto" alt="trainer">
+              <div class="media-body pl-3">
+                <h5 class="mt-0">{{ trainer.first_name }} {{ trainer.last_name }}</h5>
+                <p>{{ trainer.profile }}</p>
+              </div>
+            </div><br>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Trainers list end-->
+
+{% endblock %}

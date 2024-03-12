@@ -1,0 +1,41 @@
+{% load static %}
+<section class="module">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto text-center">
+        <h2>Upcoming Events</h2>
+        <p class="lead">Stay Ahead of the Curve: Preview Our Upcoming Events and Workshops.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="space" data-MY="60px"></div>
+      </div>
+    </div>
+    <div class="row row-post-masonry">
+      {% for course in courses %}
+        <div class="col-md-4 post-item">
+          <!-- Post-->
+          <article class="post">
+            <div class="post-preview"><a href="{% url 'website:course-detail' pk=course.id %}"><img src="{{ course.venue.venue_image.url }}" style="width: 800px; max-height: 600px;" alt="city"></a></div>
+            <div class="post-wrapper">
+              <div class="post-header">
+                <h2 class="post-title"><a href="{% url 'website:course-detail' pk=course.id %}">{{ course.title }}</a></h2>
+              </div>
+              <div class="post-content">
+                <p>{{  course.venue }} | {{  course.start_date|date:"d M Y" }}</p>
+                <p>{{ course.overview|truncatechars:200 }}</p>
+                <p><a href="{% url 'website:course-detail' pk=course.id %}">Read more</a></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-3 m-auto text-center">
+        <p><a class="btn btn-circle btn-brand" href="{% url 'website:course-list' %}">ALL COURSES</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} <title>Testimonials</title> {% endblock %}
+
+{% block content %}
+  <!-- Page Header-->
+  <section class="module parallax" data-background="{% static 'images/testimonials-compressed.jpg' %}" data-overlay="0.7">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h2>What our clients say about us</h2>
+          <p class="lead">See how your users experience your website in realtime or view trends to see any changes in performance over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end -->
+
+  <!-- Testimonial list -->
+  <section class="module">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 m-auto text-left">
+          <div class="row row-post-thumbnail">
+            <!-- Testimonial-->
+            {% for testimonial in testimonial_list %}
+              <article class="post row align-items-start">
+                <div class="col-md-5">
+                  <div class="post-preview w-50 h-50 d-flex m-auto"><img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo"></div>
+                </div>
+                <div class="col-md-7">
+                  <blockquote class="blockquote">
+                    <p>{{ testimonial.comment }}</p>
+                    <footer class="blockquote-footer">{{ testimonial.author_full_name}}, {{ testimonial.author_position }} at {{ testimonial.author_company }}
+                      <p>{{ testimonial.date|date:"d M Y" }}</p>
+                    </footer>
+                  </blockquote>
+                </div>
+              </article>
+            {% endfor %}
+            <!-- Testimonial end-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
+
+    {% if user.is_authenticated %}
+    <div class="row mt-5">
+      <div class="col-md-12 m-auto text-center">
+        <p><a class="btn btn-circle btn-outline-danger" href="{% url "website:testimonial-create" %}">LEAVE FEEDBACK</a>
+      </div>
+    </div>
+    {% else %}
+      <div class="row mt-5">
+        <div class="col-md-12 m-auto text-center">
+          <p><a class="btn btn-circle btn-outline-danger" href="{% url "website:author-create" %}">Register to leave feedback</a>
+        </div>
+      </div>
+    {% endif %}
+
+  </section>
+  <!-- Testimonial list end -->
+
+{% endblock %}

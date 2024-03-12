@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} <title>About</title> {% endblock %}
+
+{% block content %}
+  <!-- Hero-->
+  <section class="module-cover parallax text-center" data-background="{% static 'images/about_us_main-compressed.jpg' %}" data-jarallax-video="https://youtu.be/DEhcuFwPU3o?si=-CYqOTIzDNUXzGqs" data-overlay="0.7">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>We are training company <br>based in London</h1>
+          <h5>Organising business courses around the globe</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Hero end-->
+
+  <!-- Advantages -->
+  <section class="module divider-bottom pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-9 m-auto text-center">
+          <h1>Why Choose Bizeducate</h1>
+          <p class="lead">With a team of highly experienced industry professionals and subject-matter experts, Bizeducate offers courses and training in key areas of business</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="space" data-MY="60px"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p><img class="img-shadow" src="{% static 'images/main/about_us2-compressed.jpg' %}" alt="about_us"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="space" data-MY="40px"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="number-box">
+            <h6 class="number-box-header"><span class="number-box-number">01</span><span class="number-box-title">Expert Faculty</span></h6>
+            <div class="number-box-content">
+              <p>Our courses are delivered by industry experts and seasoned professionals with extensive practical experience in their respective fields.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="number-box">
+            <h6 class="number-box-header"><span class="number-box-number">02</span><span class="number-box-title">Global Reach</span></h6>
+            <div class="number-box-content">
+              <p>We organise training programs in key business hubs worldwide, ensuring accessibility and convenience for professionals across the globe.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="number-box">
+            <h6 class="number-box-header"><span class="number-box-number">03</span><span class="number-box-title">Customised Solutions</span></h6>
+            <div class="number-box-content">
+              <p>We understand that each organisation has unique training requirements. Bizeducate offers tailored programs to meet specific organisational needs, ensuring maximum relevance and value.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="number-box">
+            <h6 class="number-box-header"><span class="number-box-number">04</span><span class="number-box-title">Networking Opportunities</span></h6>
+            <div class="number-box-content">
+              <p>Our courses provide an excellent platform for professionals to network and connect with like-minded individuals from diverse backgrounds and industries.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="number-box">
+            <h6 class="number-box-header"><span class="number-box-number">05</span><span class="number-box-title">Travel to Another Country</span></h6>
+            <div class="number-box-content">
+              <p>We believe that learning should be an enjoyable and enriching journey. When you choose Bizeducate, you not only gain valuable knowledge but also have the chance to travel to exciting destinations around the globe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Advantages end-->
+
+  <!-- Areas of courses-->
+  <section class="module pt-5" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1>Our Expertise</h1>
+          <p class="lead">With a team of highly experienced industry professionals and subject-matter experts, Bizeducate offers courses and training in key areas of business.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="space" data-MY="40px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row row-portfolio" data-columns="3">
+        <div class="grid-sizer"></div>
+        <div class="portfolio-item branding">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static 'images/portfolio/about_finance-compressed.jpg' %}" alt="finance"></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">Finance and Accounting</h6><span class="portfolio-item-subtitle serif">Our courses cover a wide range of topics,
+              from financial analysis and budgeting to advanced accounting principles. Whether you are a beginner looking to enhance your understanding of financial concepts or an experienced professional seeking to refine your skills, our programs cater to all levels of expertise.</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item digital">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static "images/portfolio/about_corplaw-compressed.jpg" %}" alt="corporate_law"></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">Corporate Law</h6><span class="portfolio-item-subtitle serif">Understanding the legal framework within which businesses operate is crucial for success. Our corporate law courses provide comprehensive insights into corporate governance, contract law, intellectual property, and more. Participants gain a solid foundation in legal principles and learn how to navigate legal challenges effectively.</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item packaging">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static "images/portfolio/about_risk_management-compressed.jpg" %}" alt=""></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">Risk Management</h6><span class="portfolio-item-subtitle serif">Designed to equip professionals with the latest strategies and tools, our training programs offer practical insights into identifying, assessing, and mitigating risks across diverse industries.</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item branding">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static "images/portfolio/about_compliance-compressed.jpg" %}" alt="compliance"></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">Compliance</h6><span class="portfolio-item-subtitle serif">In today’s complex regulatory environment, compliance is a critical aspect of business operations. Our compliance courses help professionals stay updated with the latest regulations, develop robust compliance frameworks, and implement effective risk management strategies.</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item digital">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static "images/portfolio/about_procurement-compressed.jpg" %}" alt="procurement"></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">Procurement</h6><span class="portfolio-item-subtitle serif">Effective procurement practices are essential for optimising costs, managing suppliers, and ensuring a reliable supply chain. Our procurement courses cover topics such as strategic sourcing, category management, contract management, negotiation techniques, and supplier relationship management to help professionals drive efficiency and achieve procurement excellence.</span>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item packaging">
+          <div class="portfolio-item-wrapper">
+            <div class="portfolio-item-img"><img src="{% static "images/portfolio/about_hr-compressed.jpg" %}" alt="hr"></div>
+            <div class="portfolio-item-caption">
+              <h6 class="portfolio-item-title">HR (Human Resources)</h6><span class="portfolio-item-subtitle serif">People are the heart of any organisation, and our HR courses focus on developing key HR skills and competencies. From talent acquisition and performance management to employee relations and organisational development, our programs equip HR professionals with the knowledge and tools to drive HR strategies aligned with business objectives.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Areas of courses end-->
+
+{% endblock %}

@@ -1,0 +1,45 @@
+<section class="module bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto text-center">
+        <h2>What Our Customers Say</h2>
+        <p class="lead">Our goal is to increase your professional expertise. We’ll do our best so that the result of training in BizEducate exceeds your expectations.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="space" data-MY="60px"></div>
+      </div>
+    </div>
+    <div class="owl-carousel review-carousel">
+      {% for testimonial in testimonials %}
+      <div class="review-card">
+        <div class="review-card-content">
+           <p>{{ testimonial.comment }}</p>
+        </div>
+        <div class="review-card-author">
+          {% if testimonial.author_company_logo %}
+            <div class="w-50 h-50 d-flex m-auto">
+              <img src="{{ testimonial.author_company_logo.url }}" class="img-fluid" alt="logo">
+            </div>
+            <div class="review-card-author-info mt-3">
+              <h6 class="review-card-author-title">{{ testimonial.author_full_name }}</h6>
+              <p>{{ testimonial.author_position }} | {{ testimonial.author_company }}</p>
+            </div>
+          {% else %}
+            <div class="review-card-author-info">
+              <h6 class="review-card-author-title">{{ testimonial.author_full_name }}</h6>
+              <p>{{ testimonial.author_position }} | {{ testimonial.author_company }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-3 m-auto text-center">
+        <p><a class="btn btn-circle btn-brand" href="{% url 'website:testimonial-list' %}">ALL TESTIMONIALS</a>
+      </div>
+    </div>
+  </div>
+</section>

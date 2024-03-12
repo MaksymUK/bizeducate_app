@@ -1,0 +1,28 @@
+{% load static %}
+   <section class="module-cover-slides fullscreen">
+      <ul class="slides-container">
+        <li class="parallax text-center" data-overlay="0.5"><img src="{% static "images/skyline_london-compressed.jpg" %}" alt="london">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="m-b-20"><strong>Empowering Minds, <br> Transforming Lives:</strong></h1>
+                <h4 class="m-b-40">Go Global With Our Courses</h4>
+                <p><a class="btn btn-lg btn-circle btn-brand" href="{% url "website:course-list" %}">List of events</a></p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="parallax text-center" data-overlay="0.5"><img src="{% static "images/tower-bridge-compressed.jpg" %}" alt="london">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="m-b-20"><strong>Corporate Training</strong></h1>
+                <h4 class="m-b-40">Unlock Your Team's Potential with Custom Corporate Courses.</h4>
+                <p><a class="btn btn-lg btn-circle btn-brand" href="{% url "website:contact-us" %}">Discuss</a><a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url "website:corporate" %}">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="slides-navigation"><a class="prev" href="#"><span class="ti-angle-left"></span></a><a class="next" href="#"><span class="ti-angle-right"></span></a></div>
+    </section>

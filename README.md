@@ -19,6 +19,13 @@ It serves as the online platform for a training company specialising in organisi
 ## Check out the live version of the website
 [https://bizeducate-web-app.onrender.com](https://bizeducate-web-app.onrender.com)
 
+To test testimonial creation, editing and deletion, use the following credentials:
+
+>Username: dave_test
+> 
+>Password: Test_123
+
+
 ## Installation
 Python 3.8 or higher is required to run the application.
 1. Clone the repository

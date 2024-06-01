@@ -7,7 +7,7 @@ click==8.1.7
 crispy-bootstrap4==2023.1
 cryptography==42.0.5
 dj-database-url==2.1.0
-Django==4.1
+Django
 django-anymail==10.2
 django-crispy-forms==2.1
 gunicorn==21.2.0

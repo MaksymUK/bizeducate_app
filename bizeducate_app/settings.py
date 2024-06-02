@@ -16,6 +16,7 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 from django.template.context_processors import media
+from google.oauth2 import service_account
 
 load_dotenv()
 
@@ -142,17 +143,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+GS_PROJECT_ID = os.getenv("GS_PROJECT_ID")
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'credential.json')
+)
 
-STATIC_ROOT = "staticfiles/"
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-MEDIA_URL = "/media/"
+GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# Static files (CSS, JavaScript, Images)
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_STATIC_BUCKET_NAME = GS_BUCKET_NAME
+STATIC_URL = f'https://storage.googleapis.com/{GS_STATIC_BUCKET_NAME}/static/'
+
+# Media files (Uploaded by users)
+GS_MEDIA_BUCKET_NAME = GS_BUCKET_NAME
+MEDIA_URL = f'https://storage.googleapis.com/{GS_MEDIA_BUCKET_NAME}/media/'
+
+# Additional configuration
+STATIC_ROOT = 'static/'
+MEDIA_ROOT = 'media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

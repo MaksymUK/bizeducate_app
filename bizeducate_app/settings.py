@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from google.oauth2 import service_account
 import dj_database_url
 from dotenv import load_dotenv
 from django.template.context_processors import media
@@ -34,7 +35,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -146,17 +147,36 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+# Set "static" folder
+# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# Set "media" folder
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-STATIC_ROOT = "staticfiles/"
+GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
 
-MEDIA_URL = "/media/"
+# Add a unique ID to a file name if same file name exists
+GS_FILE_OVERWRITE = False
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+GS_PROJECT_ID = os.getenv("GS_PROJECT_ID")
+GS_MEDIA_BUCKET_NAME = GS_BUCKET_NAME
+GS_STATIC_BUCKET_NAME = GS_BUCKET_NAME
+STATIC_URL = 'https://storage.googleapis.com/{}/static/'.format(GS_STATIC_BUCKET_NAME)
+MEDIA_URL = 'https://storage.googleapis.com/{}/media/'.format(GS_MEDIA_BUCKET_NAME)
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'credentials.json'),
+)
+# STATIC_URL = "static/"
+#
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+#
+# STATIC_ROOT = "staticfiles/"
+#
+# MEDIA_URL = "/media/"
+#
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -17,6 +17,8 @@ import dj_database_url
 from dotenv import load_dotenv
 from django.template.context_processors import media
 
+from corsheaders.defaults import default_headers
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,10 +50,12 @@ INSTALLED_APPS = [
     "crispy_forms",
     "website",
     "anymail",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -170,3 +174,34 @@ ANYMAIL = {
 EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+# CORS_ALLOWED_ORIGINS = ["https://storage.googleapis.com", "http://localhost:8000", "http://127.0.0.1:8000"]
+CORS_ALLOWED_ORIGINS = ['https://','http://']
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    'Access-Control-Allow-Origin',
+)
+
+# CORS_ALLOW_HEADERS = ['*']
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]

@@ -12,7 +12,15 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
+# copy entrypoint.sh
+COPY ./entrypoint.sh .
+#RUN sed -i 's/\r$//g' /bizeducate_app/entrypoint.sh
+RUN chmod +x /bizeducate_app/entrypoint.sh
+
 COPY . .
+
+# run entrypoint.sh
+ENTRYPOINT ["/bizeducate_app/entrypoint.sh"]
 
 #RUN mkdir -p /media
 #

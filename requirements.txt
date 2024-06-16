@@ -31,6 +31,7 @@ pyasn1-modules==0.4.0
 pycparser==2.21
 pyparsing==3.1.2
 python-dotenv==1.0.1
+python-nginx==1.5.7
 requests==2.31.0
 rsa==4.9
 sqlparse==0.4.4

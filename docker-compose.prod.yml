@@ -6,8 +6,8 @@ services:
         context: .
     env_file:
         - .env
-    ports:
-        - "8000:8000"
+    expose:
+        - 8000
 
     command: gunicorn bizeducate_app.wsgi:application --bind 0.0.0.0:8000
 
@@ -23,6 +23,13 @@ services:
         - "5432:5432"
     volumes:
         - my_db:$PGDATA
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
 
 volumes:
     my_db:

@@ -8,6 +8,8 @@ services:
         - .env
     expose:
         - 8000
+    volumes:
+      - static_volume:/bizeducate_app/web/staticfiles
 
     command: gunicorn bizeducate_app.wsgi:application --bind 0.0.0.0:8000
 
@@ -26,6 +28,8 @@ services:
 
   nginx:
     build: ./nginx
+    volumes:
+      - static_volume:/bizeducate_app/web/staticfiles
     ports:
       - 1337:80
     depends_on:
@@ -33,3 +37,4 @@ services:
 
 volumes:
     my_db:
+    static_volume:

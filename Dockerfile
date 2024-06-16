@@ -17,6 +17,11 @@ COPY ./entrypoint.sh .
 #RUN sed -i 's/\r$//g' /bizeducate_app/entrypoint.sh
 RUN chmod +x /bizeducate_app/entrypoint.sh
 
+# Create the appropriate directories
+ENV APP_HOME=/bizeducate_app/web
+RUN mkdir -p $APP_HOME/staticfiles
+WORKDIR $APP_HOME
+
 COPY . .
 
 # create the app user and group

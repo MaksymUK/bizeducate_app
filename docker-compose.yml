@@ -1,13 +1,13 @@
 version: "1"
 
 services:
-  bizeducate_app:
+  web:
     build:
         context: .
     env_file:
         - .env
     ports:
-        - "8001:8000"
+        - "8000:8000"
     volumes:
         - ./:/bizeducate_app
 

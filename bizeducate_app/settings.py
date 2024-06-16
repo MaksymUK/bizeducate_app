@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
-from google.oauth2 import service_account
 import dj_database_url
 from dotenv import load_dotenv
 from django.template.context_processors import media
@@ -35,8 +34,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(", ")
 
 # Application definition
 
@@ -147,36 +145,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# Set "static" folder
-# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATIC_URL = "static/"
 
-# Set "media" folder
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
-GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME")
+STATIC_ROOT = "staticfiles/"
 
-# Add a unique ID to a file name if same file name exists
-GS_FILE_OVERWRITE = False
+MEDIA_URL = "/media/"
 
-GS_PROJECT_ID = os.getenv("GS_PROJECT_ID")
-GS_MEDIA_BUCKET_NAME = GS_BUCKET_NAME
-GS_STATIC_BUCKET_NAME = GS_BUCKET_NAME
-STATIC_URL = 'https://storage.googleapis.com/{}/static/'.format(GS_STATIC_BUCKET_NAME)
-MEDIA_URL = 'https://storage.googleapis.com/{}/media/'.format(GS_MEDIA_BUCKET_NAME)
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR, 'credentials.json'),
-)
-# STATIC_URL = "static/"
-#
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
-#
-# STATIC_ROOT = "staticfiles/"
-#
-# MEDIA_URL = "/media/"
-#
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -195,8 +174,7 @@ EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
-# CORS_ALLOWED_ORIGINS = ["https://storage.googleapis.com", "http://localhost:8000", "http://127.0.0.1:8000"]
-CORS_ALLOWED_ORIGINS = ['https://','http://']
+CORS_ALLOWED_ORIGINS = ["https://storage.googleapis.com", "http://localhost:8001", "http://127.0.0.1:8001"]
 
 CORS_ALLOW_METHODS = [
     'DELETE',
@@ -206,13 +184,6 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
-
-CORS_ALLOW_HEADERS = (
-    *default_headers,
-    'Access-Control-Allow-Origin',
-)
-
-# CORS_ALLOW_HEADERS = ['*']
 
 CORS_ALLOW_HEADERS = [
     'accept',

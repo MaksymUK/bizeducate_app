@@ -14,14 +14,14 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /media
-
-RUN adduser \
-        --disabled-password \
-        --no-create-home \
-        django-user \
-    && chown -R django-user /media
-
-RUN chmod -R 755 /media
-
-USER django-user
+#RUN mkdir -p /media
+#
+#RUN adduser \
+#        --disabled-password \
+#        --no-create-home \
+#        django-user \
+#    && chown -R django-user /media
+#
+#RUN chmod -R 755 /media
+#
+#USER django-user

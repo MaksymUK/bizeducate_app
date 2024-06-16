@@ -19,6 +19,15 @@ RUN chmod +x /bizeducate_app/entrypoint.sh
 
 COPY . .
 
+# create the app user and group
+RUN addgroup --system bizeducate_app && adduser --system --ingroup bizeducate_app bizeducate_app
+
+# chown all the files to the app user
+RUN chown -R bizeducate_app:bizeducate_app /bizeducate_app
+
+# change to the app user
+USER bizeducate_app
+
 # run entrypoint.sh
 ENTRYPOINT ["/bizeducate_app/entrypoint.sh"]
 

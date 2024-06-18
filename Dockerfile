@@ -22,6 +22,10 @@ ENV APP_HOME=/bizeducate_app/web
 RUN mkdir -p $APP_HOME/staticfiles
 WORKDIR $APP_HOME
 
+ENV APP_HOME=/bizeducate_app/web
+RUN mkdir -p $APP_HOME/media
+WORKDIR $APP_HOME
+
 COPY . .
 
 # create the app user and group

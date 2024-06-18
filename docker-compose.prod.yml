@@ -10,6 +10,7 @@ services:
         - 8000
     volumes:
       - static_volume:/bizeducate_app/web/staticfiles
+      - media_volume:/bizeducate_app/web/media
 
     command: gunicorn bizeducate_app.wsgi:application --bind 0.0.0.0:8000
 
@@ -30,6 +31,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/bizeducate_app/web/staticfiles
+      - media_volume:/bizeducate_app/web/media
     ports:
       - 1337:80
     depends_on:
@@ -38,3 +40,4 @@ services:
 volumes:
     my_db:
     static_volume:
+    media_volume:

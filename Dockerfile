@@ -39,15 +39,3 @@ USER bizeducate_app
 
 # run entrypoint.sh
 ENTRYPOINT ["/bizeducate_app/entrypoint.sh"]
-
-#RUN mkdir -p /media
-#
-#RUN adduser \
-#        --disabled-password \
-#        --no-create-home \
-#        django-user \
-#    && chown -R django-user /media
-#
-#RUN chmod -R 755 /media
-#
-#USER django-user

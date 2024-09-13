@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Django tests
         run: |
-          python manage.py test --keepdb
+          python manage.py tests --keepdb
           
   publish:
     needs: build

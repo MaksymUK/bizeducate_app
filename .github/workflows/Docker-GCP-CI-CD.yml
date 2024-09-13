@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Django tests
         env: 
-          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
+          CSRF_TRUSTED_ORIGINS: ${{ secrets.TRUSTED_ORIGINS }}
         run: |
           python manage.py test --keepdb
           

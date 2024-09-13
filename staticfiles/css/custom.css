@@ -1,0 +1,16 @@
+.owl-carousel .owl-stage {
+   display: flex;
+    align-items: center;
+
+}
+
+.owl-carousel .owl-item img {
+  max-width: 100%;
+  height: auto;
+    align-self: center;
+}
+
+.client {
+   display: flex;
+   height: 100%;
+}

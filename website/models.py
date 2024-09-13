@@ -31,7 +31,7 @@ class Trainer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     qualification = models.CharField(max_length=500, blank=True)
-    profile = models.TextField(max_length=1000, blank=True)
+    profile = models.TextField(max_length=2000, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.DO_NOTHING, blank=True, related_name="trainers"
     )
@@ -42,7 +42,7 @@ class Trainer(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=500, unique=True)
     category = models.ForeignKey(
         Category, on_delete=models.DO_NOTHING, blank=True, related_name="courses"
     )
@@ -55,10 +55,10 @@ class Course(models.Model):
     )
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
-    overview = models.TextField(max_length=500, blank=True)
+    overview = models.TextField(max_length=1000, blank=True)
     audience = models.TextField(max_length=500, blank=True)
-    learning_outcome = models.TextField(max_length=500, blank=True)
-    key_questions = models.TextField(max_length=500, blank=True)
+    learning_outcome = models.TextField(max_length=1000, blank=True)
+    key_questions = models.TextField(max_length=1500, blank=True)
     trainers = models.ManyToManyField(Trainer, related_name="courses")
 
     class Meta:

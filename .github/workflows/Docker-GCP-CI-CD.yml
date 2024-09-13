@@ -29,6 +29,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Django tests
+        env: 
+          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
         run: |
           python manage.py test --keepdb
           

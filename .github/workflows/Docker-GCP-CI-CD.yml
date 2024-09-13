@@ -30,10 +30,10 @@ jobs:
 
       - name: Run Django tests
         run: |
-          python manage.py tests --keepdb
+          python manage.py test --keepdb
           
   publish:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

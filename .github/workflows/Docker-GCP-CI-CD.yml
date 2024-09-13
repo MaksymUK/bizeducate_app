@@ -1,0 +1,13 @@
+name: Docker-GCP-CI-CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+  test:
+  publish:
+  deploy:
+  
+  

@@ -80,12 +80,8 @@ jobs:
 
       - name: Build docker-compose.yml
         run: |
-          sed "s/DOCKER_IMAGE_NAME_STAGING/${{secrets.DOCKERHUB_USERNAME}}\/${{secrets.DOCKER_IMAGE_NAME_STAGING}}/g" docker-compose-template.yml > docker-compose.yml
           sed -i "s/DOCKER_IMAGE_NAME/${{secrets.DOCKERHUB_USERNAME}}\/${{secrets.DOCKER_IMAGE_NAME}}/g" docker-compose.yml
-          sed -i "s/DOCKER_CONTAINER_NAME_STAGING/${{secrets.DOCKER_CONTAINER_NAME_STAGING}}/g" docker-compose.yml
-          sed -i "s/DOCKER_CONTAINER_NAME/${{secrets.DOCKER_CONTAINER_NAME}}/g" docker-compose.yml
-
-
+        
       - name: scp into GCP instance
         uses: appleboy/scp-action@master
         with:

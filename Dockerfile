@@ -12,8 +12,6 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .

@@ -120,8 +120,8 @@ jobs:
           key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
           script: |
             cd /home/max/bizeducate_app_nginx/
-            docker-compose -f docker-compose.prod.yml --profile staging down
-            docker-compose -f docker-compose.prod.yml --profile staging build --pull
-            docker-compose -f docker-compose.prod.yml --profile staging pull
-            docker-compose -f docker-compose.prod.yml --profile staging up -d
+            docker-compose -f docker-compose.prod.yml down
+            docker-compose -f docker-compose.prod.yml build --pull
+            docker-compose -f docker-compose.prod.yml pull
+            docker-compose -f docker-compose.prod.yml up -d
   

@@ -104,10 +104,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:client_2 .
+          docker build -t maksymuk/bizeducate_app:client_2 .
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:client_2
+        run: docker push maksymuk/bizeducate_app:client_2
         
       - name: SSH into GCP instance and deploy Django
         uses: appleboy/ssh-action@master

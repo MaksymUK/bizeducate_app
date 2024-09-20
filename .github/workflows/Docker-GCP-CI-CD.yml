@@ -92,7 +92,23 @@ jobs:
   #         target: "/home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/"
   deploy:
     runs-on: ubuntu-latest
-    steps:      
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:client_2 .
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:client_2
+        
       - name: SSH into GCP instance and deploy Django
         uses: appleboy/ssh-action@master
         with:
@@ -100,9 +116,9 @@ jobs:
           username: max
           key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
           script: |
-            docker compose -f /home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/docker-compose.yml --profile staging down
-            docker compose -f /home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/docker-compose.yml --profile staging build --pull
-            docker compose -f /home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/docker-compose.yml --profile staging up -d
-
-            docker image prune -f
+            cd /home/max/bizeducate_app_nginx/
+            docker-compose -f docker-compose.prod.yml --profile staging down
+            docker-compose -f docker-compose.prod.yml --profile staging build --pull
+            docker-compose -f docker-compose.prod.yml --profile staging pull
+            docker-compose -f docker-compose.prod.yml --profile staging up -d
   

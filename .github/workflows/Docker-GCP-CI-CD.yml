@@ -5,97 +5,99 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
         
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.9
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: 3.9
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+  #     - name: Install dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install -r requirements.txt
 
-      - name: Run Django tests
-        env: 
-          CSRF_TRUSTED_ORIGINS: 'http://localhost:1337'
-        run: |
-          python manage.py test --keepdb
+  #     - name: Run Django tests
+  #       env: 
+  #         CSRF_TRUSTED_ORIGINS: 'http://localhost:1337'
+  #       run: |
+  #         python manage.py test --keepdb
           
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # publish:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: Login to Docker Hub
+  #       uses: docker/login-action@v1
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+  #     - name: Set up Docker
+  #       uses: docker/setup-buildx-action@v2
 
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
+  #     - name: Build Docker image
+  #       run: |
+  #         docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
 
-      - name: Tag Docker image
-        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+  #     - name: Tag Docker image
+  #       run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
 
-      - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+  #     - name: Push Docker image to Docker Hub
+  #       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
 
-  deploy:
-    needs: publish
-    runs-on: ubuntu-latest
-    steps:
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v2'
-        with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+  # deploy:
+  #   needs: publish
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - id: 'auth'
+  #       uses: 'google-github-actions/auth@v2'
+  #       with:
+  #         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
+  #     - name: 'Set up Cloud SDK'
+  #       uses: 'google-github-actions/setup-gcloud@v2'
 
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
+  #     - name: 'Use gcloud CLI'
+  #       run: 'gcloud info'
 
-      - name: Checkout repository
-        uses: actions/checkout@v3
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
 
-      - name: Build docker-compose.yml
-        run: |
-          sed -i "s/DOCKER_IMAGE_NAME/${{secrets.DOCKERHUB_USERNAME}}\/${{secrets.DOCKER_IMAGE_NAME}}/g" docker-compose.yml
+  #     - name: Build docker-compose.yml
+  #       run: |
+  #         sed -i "s/DOCKER_IMAGE_NAME/${{secrets.DOCKERHUB_USERNAME}}\/${{secrets.DOCKER_IMAGE_NAME}}/g" docker-compose.yml
         
-      - name: scp into GCP instance
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.GCE_INSTANCE_IP }}
-          username: ${{ secrets.GCE_SSH_USERNAME }}
-          key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
-          source: "docker-compose.yml"
-          target: "/home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/"
-
+  #     - name: scp into GCP instance
+  #       uses: appleboy/scp-action@master
+  #       with:
+  #         host: ${{ secrets.GCE_INSTANCE_IP }}
+  #         username: ${{ secrets.GCE_SSH_USERNAME }}
+  #         key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+  #         source: "docker-compose.yml"
+  #         target: "/home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:      
       - name: SSH into GCP instance and deploy Django
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.GCE_INSTANCE_IP }}
-          username: ${{ secrets.GCE_SSH_USERNAME }}
+          host: "35.199.154.150"
+          username: max
           key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
           script: |
             docker compose -f /home/max/bizeducate_app_nginx/ ${{ secrets.GCE_SSH_USERNAME }}/docker-compose.yml --profile staging down

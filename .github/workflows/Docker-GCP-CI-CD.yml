@@ -113,7 +113,7 @@ jobs:
         run: docker push maksymuk/bizeducate_app:client_2
         
       - name: SSH into GCP instance and deploy Django
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: "35.199.154.150"
           username: max

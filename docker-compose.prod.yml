@@ -1,9 +1,9 @@
-version: "1"
+version: "3.8"
 
 services:
   web:
     build:
-        context: .
+        context: DOCKER_IMAGE_NAME:latest
     env_file:
         - .env
     expose:
@@ -32,8 +32,8 @@ services:
     volumes:
       - static_volume:/bizeducate_app/web/staticfiles
       - media_volume:/bizeducate_app/web/media
-      - /etc/letsencrypt/live/bizeducate.net/fullchain.pem:/etc/letsencrypt/live/bizeducate.net/fullchain.pem
-      - /etc/letsencrypt/live/bizeducate.net/privkey.pem:/etc/letsencrypt/live/bizeducate.net/privkey.pem
+      - /etc/letsencrypt/live/bizeducate.com/fullchain.pem:/etc/letsencrypt/live/bizeducate.com/fullchain.pem
+      - /etc/letsencrypt/live/bizeducate.com/privkey.pem:/etc/letsencrypt/live/bizeducate.com/privkey.pem
     ports:
       - 80:80
       - 443:443

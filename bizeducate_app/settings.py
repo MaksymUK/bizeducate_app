@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "website",
     "anymail",
     "corsheaders",
+    "django_recaptcha",
 ]
 
 MIDDLEWARE = [
@@ -199,3 +200,7 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY")
+
+RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")

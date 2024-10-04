@@ -51,7 +51,7 @@
               <h6>Support</h6>
             </div>
             <div class="icon-box-content">
-              <p>Support is just a call away!<br>Reach us over the phone in London at +4420 1234 5678 (WhatsApp) or in Astana at +7 1234 5678.</p>
+              <p>Support is just a call away!<br>Reach us over the phone in London at +4420 3695 3407 (WhatsApp) or in Astana at +7 7172 695 933.</p>
             </div>
           </div>
         </div>
@@ -89,13 +89,37 @@
         <div class="col-md-8 m-auto">
           <form method="post">
             {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-circle btn-brand" type="submit">Send</button>
+            <div class="form-group">
+                {{ form.name }}
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+                {{ form.email }}
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+                {{ form.company }}
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group">
+                {{ form.message }}
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="form-group text-right">
+                {{ form.captcha }}
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="col-md-12">
+              <p class="text-center">
+                <input class="btn btn-circle btn-brand" type="submit" value="Send Message">
+              </p>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </section>
   <!-- Form end-->
+
 
 {% endblock %}

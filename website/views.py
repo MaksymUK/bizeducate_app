@@ -7,6 +7,9 @@ from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.urls import reverse_lazy, reverse
+from django.utils import timezone
+from datetime import timedelta
+
 
 from .forms import (
     CourseSearchForm,
@@ -18,7 +21,9 @@ from .models import Course, Trainer, Testimonial, Author
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    courses = Course.objects.all()[0:3]
+    today = timezone.now().date()
+    one_week_from_now = today + timedelta(weeks=1)
+    courses = Course.objects.filter(start_date__gt=one_week_from_now)[:3]
     testimonials = Testimonial.objects.all()
     context = {
         "courses": courses,

@@ -1,5 +1,5 @@
 asgiref==3.7.2
-black==24.2.0
+black==24.3.0
 cachetools==5.3.3
 certifi==2024.2.2
 cffi==1.16.0
@@ -16,11 +16,11 @@ django-recaptcha==4.0.0
 gunicorn==21.2.0
 h11==0.14.0
 httplib2==0.22.0
-idna==3.6
+idna==3.7
 mypy-extensions==1.0.0
 packaging==23.2
 pathspec==0.12.1
-pillow==10.2.0
+pillow==10.3.0
 platformdirs==4.2.0
 proto-plus==1.23.0
 protobuf==4.25.3

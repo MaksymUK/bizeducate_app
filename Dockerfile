@@ -6,6 +6,8 @@ WORKDIR /bizeducate_app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Install build dependencies for Alpine
+RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev libffi-dev
 #RUN pip install --upgrade pip
 RUN pip install --upgrade pip setuptools wheel
 

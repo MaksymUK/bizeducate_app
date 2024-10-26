@@ -1,4 +1,4 @@
-FROM python:alpine3.20.3
+FROM python:alpine3.20
 LABEL maintainer="office@bizeducate.com"
 
 WORKDIR /bizeducate_app

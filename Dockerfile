@@ -1,4 +1,4 @@
-FROM python:alpine3.20
+FROM python:3.12-alpine
 LABEL maintainer="office@bizeducate.com"
 
 WORKDIR /bizeducate_app
@@ -8,12 +8,13 @@ ENV PYTHONUNBUFFERED 1
 
 # Install build dependencies for Alpine
 RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev libffi-dev
-#RUN pip install --upgrade pip
-RUN pip install --upgrade pip setuptools wheel
 
 COPY requirements.txt requirements.txt
-
-RUN pip install -r requirements.txt
+#RUN pip install --upgrade pip
+RUN python -m venv /venv && \
+    . /venv/bin/activate && \
+    pip install --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir -r requirements.txt
 
 
 # copy entrypoint.sh

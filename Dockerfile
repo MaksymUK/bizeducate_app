@@ -11,9 +11,7 @@ RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev libffi-dev
 
 COPY requirements.txt requirements.txt
 #RUN pip install --upgrade pip
-RUN python -m venv /venv && \
-    . /venv/bin/activate && \
-    pip install --upgrade pip setuptools wheel && \
+RUN pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt
 
 
@@ -24,11 +22,7 @@ RUN chmod +x /bizeducate_app/entrypoint.sh
 
 # Create the appropriate directories
 ENV APP_HOME=/bizeducate_app/web
-RUN mkdir -p $APP_HOME/staticfiles
-WORKDIR $APP_HOME
-
-ENV APP_HOME=/bizeducate_app/web
-RUN mkdir -p $APP_HOME/media
+RUN mkdir -p $APP_HOME/staticfiles $APP_HOME/media
 WORKDIR $APP_HOME
 
 COPY . .

@@ -50,7 +50,7 @@ urlpatterns = [
     path("finance/", FinanceListView.as_view(), name="finance-list"),
     path("procurement/", ProcurementListView.as_view(), name="procurement-list"),
     path("hr/", HrListView.as_view(), name="hr-list"),
-    path("cg/", CgListView.as_view(), name="cg-list"),
+    path("grc/", CgListView.as_view(), name="grc-list"),
     path("about/", about_us, name="about"),
     path("corporate/", corporate, name="corporate"),
 ]

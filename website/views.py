@@ -205,11 +205,11 @@ class HrListView(CourseListView):
 
 
 class CgListView(CourseListView):
-    template_name = "website/cg_list.html"
+    template_name = "website/grc_list.html"
 
     def get_queryset(self):
         return (
-            super().get_queryset().filter(category__name__iexact="corporate governance")
+            super().get_queryset().filter(category__name__iexact="grc")
         )
 
 

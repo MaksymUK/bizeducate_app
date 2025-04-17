@@ -197,11 +197,11 @@ class ProcurementListView(CourseListView):
         return super().get_queryset().filter(category__name__iexact="procurement")
 
 
-class HrListView(CourseListView):
-    template_name = "website/hr_list.html"
+class LawListView(CourseListView):
+    template_name = "website/law_list.html"
 
     def get_queryset(self):
-        return super().get_queryset().filter(category__name__iexact="hr")
+        return super().get_queryset().filter(category__name__iexact="law")
 
 
 class CgListView(CourseListView):

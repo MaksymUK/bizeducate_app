@@ -201,7 +201,7 @@ class LawListView(CourseListView):
     template_name = "website/law_list.html"
 
     def get_queryset(self):
-        return super().get_queryset().filter(category__name__iexact="law")
+        return super().get_queryset().filter(category__name__iexact="corporate law")
 
 
 class CgListView(CourseListView):

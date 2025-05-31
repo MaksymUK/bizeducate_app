@@ -2,7 +2,19 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 
-from website.models import Venue, Category, Trainer, Course, Author, Testimonial
+from website.models import (
+    Venue, Category, Trainer, Course, Author, Testimonial,
+    CourseKeyQuestion, CourseAudience)
+
+
+class CourseKeyQuestionInline(admin.TabularInline):
+    model = CourseKeyQuestion
+    extra = 1
+
+
+class CourseAudienceInLine(admin.TabularInline):
+    model = CourseAudience
+    extra = 1
 
 
 @admin.register(Venue)
@@ -29,6 +41,7 @@ class TrainerAdmin(admin.ModelAdmin):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
+    inlines = [CourseKeyQuestionInline, CourseAudienceInLine]
     list_display = [
         "title",
         "venue",

@@ -20,9 +20,12 @@ from .forms import (
 from .models import Course, Trainer, Testimonial, Author
 
 
+def get_one_week_from_now():
+    return timezone.now().date() + timedelta(weeks=1)
+
+
 def index(request: HttpRequest) -> HttpResponse:
-    today = timezone.now().date()
-    one_week_from_now = today + timedelta(weeks=1)
+    one_week_from_now = get_one_week_from_now()
     courses = Course.objects.filter(start_date__gt=one_week_from_now)[:3]
     testimonials = Testimonial.objects.all()
     context = {
@@ -74,7 +77,8 @@ class CourseListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Course.objects.all()
+        one_week_from_now = get_one_week_from_now()
+        queryset = Course.objects.filter(start_date__gt=one_week_from_now)
         form = CourseSearchForm(self.request.GET)
         if form.is_valid():
             title_query = form.cleaned_data.get("title", "")

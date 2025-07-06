@@ -16,7 +16,7 @@ from .views import (
     TestimonialUpdateView,
     LawListView,
     CgListView,
-    ProcurementListView,
+    ProjectManagementListView,
     about_us,
     corporate,
 )
@@ -48,7 +48,7 @@ urlpatterns = [
     path("authors/<int:pk>/update/", AuthorUpdateView.as_view(), name="author-update"),
     path("authors/<int:pk>/delete/", AuthorDeleteView.as_view(), name="author-delete"),
     path("finance/", FinanceListView.as_view(), name="finance-list"),
-    path("procurement/", ProcurementListView.as_view(), name="procurement-list"),
+    path("project-management/", ProjectManagementListView.as_view(), name="project-management-list"),
     path("law/", LawListView.as_view(), name="law-list"),
     path("grc/", CgListView.as_view(), name="grc-list"),
     path("about/", about_us, name="about"),

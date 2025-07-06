@@ -190,11 +190,11 @@ class FinanceListView(CourseListView):
         return super().get_queryset().filter(category__name__iexact="finance")
 
 
-class ProcurementListView(CourseListView):
-    template_name = "website/procurement_list.html"
+class ProjectManagementListView(CourseListView):
+    template_name = "website/project_management_list.html"
 
     def get_queryset(self):
-        return super().get_queryset().filter(category__name__iexact="procurement")
+        return super().get_queryset().filter(category__name__iexact="project management")
 
 
 class LawListView(CourseListView):

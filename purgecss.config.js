@@ -1,0 +1,55 @@
+module.exports = {
+  content: [
+    './templates/**/*.html',
+    './**/templates/**/*.html',
+    './static/js/**/*.js'
+  ],
+  css: [
+    './static/css/plugins.min.css',
+    './static/css/template.css',
+    './static/css/custom.css',
+  ],
+  output: './static/css/',
+  safelist: {
+    standard: [
+      'active',
+      'show',
+      'fade',
+      'collapse',
+      'collapsing',
+      'modal',
+      'modal-open',
+      'dropdown',
+      'dropdown-menu',
+      'dropdown-item',
+      'navbar',
+      'navbar-collapse',
+      'navbar-toggler',
+      'row',
+      'col',
+      'container',
+      'container-fluid',
+    ],
+    deep: [
+      /^nav/,
+      /^modal/,
+      /^dropdown/,
+      /^collapse/,
+      /^carousel/,
+      /^tooltip/,
+      /^popover/,
+      /^btn/,
+      /^alert/,
+      /^card/,
+      /^bg-/,
+      /^text-/,
+      /^col-/,
+      /^offset-/,
+      /^order-/,
+      /^d-/,
+      /^justify-/,
+      /^align-/,
+      /^float-/,
+    ]
+  }
+}

@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     "anymail",
     "corsheaders",
     "django_recaptcha",
-    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -157,24 +156,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-COMPRESS_FILTERS = {
-    'css': [
-        'compressor.filters.css_default.CssAbsoluteFilter',
-        'compressor.filters.cssmin.rCSSMinFilter',
-    ],
-    'js': [
-        'compressor.filters.jsmin.rJSMinFilter'
-    ]
-}
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_ENABLED = os.getenv("COMPRESS_ENABLED")
 
 MEDIA_URL = "/media/"
 

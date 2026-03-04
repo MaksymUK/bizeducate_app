@@ -360,3 +360,7 @@ credentials.json
 bizeducate_db
 
 .DS_Store
+
+staticfiles
+
+static.zip

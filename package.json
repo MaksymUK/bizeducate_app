@@ -1,0 +1,52 @@
+{
+  "name": "bizeducate_app",
+  "version": "1.0.0",
+  "description": "Bizeducate_app is a corporate website developed using Django framework and Bootstrap 4.  It serves as the online platform for a training company specialising in organising business courses worldwide.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "purgecss --config purgecss.config.js && postcss static/css/template.css -o static/css/cleaned.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaksymUK/bizeducate_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MaksymUK/bizeducate_app/issues"
+  },
+  "homepage": "https://github.com/MaksymUK/bizeducate_app#readme",
+  "devDependencies": {
+    "cssnano": "^7.1.2",
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
+    "purgecss": "^8.0.0"
+  },
+  "dependencies": {
+    "braces": "^3.0.3",
+    "commander": "^12.1.0",
+    "cssesc": "^3.0.0",
+    "fast-glob": "^3.3.3",
+    "fastq": "^1.20.1",
+    "fill-range": "^7.1.1",
+    "glob-parent": "^5.1.2",
+    "is-extglob": "^2.1.1",
+    "is-glob": "^4.0.3",
+    "is-number": "^7.0.0",
+    "merge2": "^1.4.1",
+    "micromatch": "^4.0.8",
+    "nanoid": "^3.3.11",
+    "picocolors": "^1.1.1",
+    "picomatch": "^2.3.1",
+    "postcss-selector-parser": "^7.1.1",
+    "queue-microtask": "^1.2.3",
+    "reusify": "^1.1.0",
+    "run-parallel": "^1.2.0",
+    "source-map-js": "^1.2.1",
+    "to-regex-range": "^5.0.1",
+    "util-deprecate": "^1.0.2"
+  }
+}

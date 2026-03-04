@@ -358,3 +358,5 @@ identifier.sqlite
 credentials.json
 
 bizeducate_db
+
+.DS_Store
